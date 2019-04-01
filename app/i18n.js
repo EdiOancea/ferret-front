@@ -33,7 +33,6 @@ const formatTranslationMessages = (locale, messages) => {
         : messages[key];
     return Object.assign(formattedMessages, { [key]: formattedMessage });
   };
-
   return Object.keys(messages).reduce(flattenFormattedMessages, {});
 };
 
