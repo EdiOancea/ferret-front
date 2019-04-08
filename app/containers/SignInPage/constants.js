@@ -1,0 +1,3 @@
+export const REQUEST_SIGN_IN = 'app/SignInPage/REQUEST_SIGN_IN';
+export const REQUEST_SIGN_IN_SUCCESS = 'app/SignInPage/REQUEST_SIGN_IN_SUCCESS';
+export const REQUEST_SIGN_IN_FAILED = 'app/SignInPage/REQUEST_SIGN_IN_FAILED';
