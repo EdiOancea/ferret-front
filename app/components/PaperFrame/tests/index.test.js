@@ -6,7 +6,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 describe('<PaperFrame />', () => {
   it('should not regress', () => {
     const tree = render(
-      <PaperFrame headerText="test text" icon={<LockOutlinedIcon />}>
+      <PaperFrame text="test text" icon={<LockOutlinedIcon />}>
         <div>test</div>
       </PaperFrame>,
     );

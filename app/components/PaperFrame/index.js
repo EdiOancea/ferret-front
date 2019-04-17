@@ -6,17 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 const styles = theme => ({
-  main: {
-    width: 'auto',
-    display: 'block', // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
   paper: {
     marginTop: theme.spacing.unit * 8,
     display: 'flex',
@@ -32,24 +21,22 @@ const styles = theme => ({
 });
 
 const PaperFrame = props => {
-  const { classes, headerText, icon, children } = props;
+  const { classes, text, icon, children } = props;
 
   return (
-    <div className={classes.main}>
-      <Paper className={classes.paper}>
-        <Avatar className={classes.avatar}>{icon}</Avatar>
-        <Typography component="h1" variant="h5">
-          {headerText}
-        </Typography>
-        {children}
-      </Paper>
-    </div>
+    <Paper className={classes.paper}>
+      <Avatar className={classes.avatar}>{icon}</Avatar>
+      <Typography component="h1" variant="h5">
+        {text}
+      </Typography>
+      {children}
+    </Paper>
   );
 };
 
 PaperFrame.propTypes = {
   classes: PropTypes.object.isRequired,
-  headerText: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
   icon: PropTypes.object.isRequired,
   children: PropTypes.object,
 };

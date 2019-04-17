@@ -5,12 +5,10 @@ import { compose } from 'redux';
 import * as Yup from 'yup';
 import { createStructuredSelector } from 'reselect';
 
-import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import FormComponent from 'components/FormComponent';
 import { selectErrorMessage } from './selectors';
 import { signIn } from './actions';
-import reducer from './reducer';
 import saga from './saga';
 
 const config = {
@@ -73,11 +71,6 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: values => dispatch(signIn(values)),
 });
 
-const withReducer = injectReducer({
-  key: 'signIn',
-  reducer,
-});
-
 const withSaga = injectSaga({
   key: 'signIn',
   saga,
@@ -90,6 +83,5 @@ const withConnect = connect(
 
 export default compose(
   withSaga,
-  withReducer,
   withConnect,
 )(SignInForm);

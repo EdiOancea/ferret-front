@@ -94,7 +94,7 @@ exports[`<FormComponent /> Should not regress 1`] = `
     </span>
   </button>
   <div>
-    test error message
+     test error message 
   </div>
 </form>
 `;

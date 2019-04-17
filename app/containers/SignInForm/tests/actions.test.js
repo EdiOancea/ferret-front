@@ -5,18 +5,16 @@ describe('sign in actions', () => {
   it('returns signIn', () => {
     expect(signIn({})).toEqual({ type: SIGN_IN, data: {} });
   });
-
   it('returns signInSuccess', () => {
     expect(signInSuccess('token')).toEqual({
       type: SIGN_IN_SUCCESS,
       token: 'token',
     });
   });
-
   it('returns signInFailed', () => {
-    expect(signInFailed('errorMessage')).toEqual({
+    expect(signInFailed('message')).toEqual({
       type: SIGN_IN_FAILED,
-      errorMessage: 'errorMessage',
+      message: 'message',
     });
   });
 });

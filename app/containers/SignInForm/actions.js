@@ -10,7 +10,7 @@ export const signInSuccess = token => ({
   token,
 });
 
-export const signInFailed = errorMessage => ({
+export const signInFailed = message => ({
   type: SIGN_IN_FAILED,
-  errorMessage,
+  message,
 });
