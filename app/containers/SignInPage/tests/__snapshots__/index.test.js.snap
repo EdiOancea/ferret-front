@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SignInPage /> should not regress 1`] = `
+<SignInPage
+  classes={
+    Object {
+      "main": "SignInPage-main-1",
+    }
+  }
+>
+  <div>
+     a 
+  </div>
+</SignInPage>
+`;

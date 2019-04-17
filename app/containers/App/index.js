@@ -20,7 +20,7 @@ export default function App() {
   return (
     <div>
       <Switch>
-        <Route path="/signin" component={SignInPage}/>
+        <Route path="/signin" component={SignInPage} />
         <Route exact path="/" component={HomePage} />
         <Route component={NotFoundPage} />
       </Switch>

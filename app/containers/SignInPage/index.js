@@ -1,89 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
+import withStyles from '@material-ui/core/styles/withStyles';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-import injectReducer from '../../utils/injectReducer';
-import reducer from './reducer';
-import injectSaga from '../../utils/injectSaga';
-import saga from './saga';
-import { requestSignIn } from './actions';
-import {
-  makeSelectToken,
-  makeSelectMessage,
-} from './selectors';
-import SignInForm from '../../components/SignInForm/SignInForm';
+import PaperFrame from 'components/PaperFrame';
+import SignInForm from 'containers/SignInForm';
 
-class SignInPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: '',
-      password: '',
-    };
-  }
-
-  changeInput(input, value) {
-    this.setState({ [input]: value });
-  }
-
-  handleButtonClick() {
-    const { submitForm } = this.props;
-    const { email, password } = this.state;
-
-    submitForm({ email, password });
-  }
-
-  render() {
-    return (
-      <SignInForm
-      {...{
-        onEmailChange: e => this.changeInput('email', e.target.value),
-        onPasswordChange: e => this.changeInput('password', e.target.value),
-        onCheckboxChange: e => this.changeInput('checkbox', e.target.checked),
-        onButtonClick: () => this.handleButtonClick(),
-      }}
-      />
-    );
-  }
-};
-
-SignInPage.propTypes = {
-  onEmailChange: PropTypes.func.isRequired,
-  onPasswordChange: PropTypes.func.isRequired,
-  onCheckboxChange: PropTypes.func.isRequired,
-  submitForm: PropTypes.func.isRequired,
-  onButtonClick: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = createStructuredSelector({
-  token: makeSelectToken(),
-  message: makeSelectMessage(),
+const styles = theme => ({
+  main: {
+    width: 'auto',
+    display: 'block', // Fix IE 11 issue.
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+      width: 400,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
 });
 
-const mapDispatchToProps = dispatch => ({
-  submitForm: data => dispatch(requestSignIn(data)),
-});
-
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
+const SignInPage = ({ classes }) => (
+  <div className={classes.main}>
+    <PaperFrame text="Sign in" icon={<LockOutlinedIcon />}>
+      <SignInForm />
+    </PaperFrame>
+  </div>
 );
 
-const withReducer = injectReducer({
-  key: 'signIn',
-  reducer,
-});
+SignInPage.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
-const withSaga = injectSaga({
-  key: 'signIn',
-  saga,
-});
-
-export default compose(
-  withReducer,
-  withSaga,
-  withConnect,
-)(SignInPage);
+export default withStyles(styles)(SignInPage);

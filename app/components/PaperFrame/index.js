@@ -11,32 +11,34 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`,
   },
   avatar: {
     margin: theme.spacing.unit,
     backgroundColor: theme.palette.secondary.main,
-  }
+  },
 });
 
-const BorderWithIcon = (props) => {
-  const { classes, text } = props;
-  const children = React.Children.map(props.children, child => child);
+const PaperFrame = props => {
+  const { classes, text, icon, children } = props;
+
   return (
     <Paper className={classes.paper}>
-      <Avatar className={classes.avatar}>
-        {children[0]}
-      </Avatar>
+      <Avatar className={classes.avatar}>{icon}</Avatar>
       <Typography component="h1" variant="h5">
         {text}
       </Typography>
-      {children.map((child, i) => i != 0 ? child : null )}
+      {children}
     </Paper>
   );
 };
 
-BorderWithIcon.propTypes = {
+PaperFrame.propTypes = {
   classes: PropTypes.object.isRequired,
+  text: PropTypes.string.isRequired,
+  icon: PropTypes.object.isRequired,
+  children: PropTypes.object,
 };
 
-export default withStyles(styles)(BorderWithIcon);
+export default withStyles(styles)(PaperFrame);
