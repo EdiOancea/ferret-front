@@ -1,11 +1,5 @@
-let value;
-
-const fetch = jest.fn(() => ({
-  json: () => new Promise(resolve => resolve(value)),
+const fetch = jest.fn((url, content) => ({
+  json: () => Promise.resolve(JSON.parse(content.body)),
 }));
-
-fetch.setValue = v => {
-  value = v;
-};
 
 export default fetch;

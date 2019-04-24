@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import SignInPage from 'containers/SignInPage';
+import SignInPage from 'components/SignInPage';
 
 describe('<SignInPage />', () => {
   it('should not regress', () => {

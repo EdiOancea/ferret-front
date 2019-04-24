@@ -1,6 +1,6 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import { SIGN_IN } from '../constants';
-import { requestSignInSaga, signIn } from '../saga';
+import requestSignInSaga, { signIn } from '../saga';
 import { signInSuccess, signInFailed } from '../actions';
 
 jest.mock('services/signInRequest');

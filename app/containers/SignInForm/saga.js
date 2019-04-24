@@ -14,10 +14,6 @@ export function* signIn(action) {
   }
 }
 
-export function* requestSignInSaga() {
+export default function* requestSignInSaga() {
   yield takeLatest(SIGN_IN, signIn);
-}
-
-export default function* rootSaga() {
-  yield requestSignInSaga();
 }
