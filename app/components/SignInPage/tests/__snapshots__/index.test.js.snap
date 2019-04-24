@@ -1,10 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<SignInPage /> should not regress 1`] = `
-<WithStyles(PaperFrame)
-  headerText="Sign in"
-  icon={<pure(LockOutlinedIcon) />}
+<SignInPage
+  classes={
+    Object {
+      "main": "SignInPage-main-1",
+    }
+  }
 >
-  <withSaga(withReducer(Connect(SignInForm))) />
-</WithStyles(PaperFrame)>
+  <div>
+     a 
+  </div>
+</SignInPage>
 `;

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Formik, Form } from 'formik';
 
-import SubmitErrorField from 'components/SubmitErrorField';
-import FormInput from 'components/FormInput';
+import Input from 'components/Input';
 import FormCheckbox from 'components/FormCheckbox';
 import FormButton from 'components/FormButton';
 
@@ -14,6 +13,20 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
   },
 });
+
+const renderFields = fields =>
+  fields.map(field => {
+    switch (field.type) {
+      case 'input':
+        return <Input key={field.options.name} {...field.options} />;
+      case 'button':
+        return <FormButton key={field.options.name} {...field.options} />;
+      case 'checkbox':
+        return <FormCheckbox key={field.options.name} {...field.options} />;
+      default:
+        return null;
+    }
+  });
 
 const FormComponent = props => {
   const {
@@ -32,25 +45,8 @@ const FormComponent = props => {
       validationSchema={validationSchema}
       render={() => (
         <Form className={classes.form}>
-          {fields.map(field => {
-            switch (field.type) {
-              case 'input':
-                return (
-                  <FormInput key={field.options.name} {...field.options} />
-                );
-              case 'button':
-                return (
-                  <FormButton key={field.options.name} {...field.options} />
-                );
-              case 'checkbox':
-                return (
-                  <FormCheckbox key={field.options.name} {...field.options} />
-                );
-              default:
-                return null;
-            }
-          })}
-          <SubmitErrorField errorMessage={errorMessage} />
+          {renderFields(fields)}
+          <div>{errorMessage}</div>
         </Form>
       )}
     />
