@@ -4,8 +4,7 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_IN_FAILED,
 } from 'containers/SignInForm/constants';
-
-import { IS_LOADING, IS_NOT_LOADING } from 'containers/App/constants';
+import { SIGN_OUT } from 'containers/App/constants';
 
 const initialState = fromJS({
   token: '',
@@ -18,10 +17,8 @@ const appReducer = (state = initialState, action) => {
       return state.set('token', action.token);
     case SIGN_IN_FAILED:
       return state.set('token', '');
-    case IS_LOADING:
-      return state.set('loading', true);
-    case IS_NOT_LOADING:
-      return state.set('loading', false);
+    case SIGN_OUT:
+      return state.set('token', '');
     default:
       return state;
   }

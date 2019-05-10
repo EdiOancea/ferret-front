@@ -1,9 +1,5 @@
-import { IS_LOADING, IS_NOT_LOADING } from './constants';
+import { SIGN_OUT } from './constants';
 
-export const isLoading = () => ({
-  type: IS_LOADING,
-});
-
-export const isNotLoading = () => ({
-  type: IS_NOT_LOADING,
+export const signOut = () => ({
+  type: SIGN_OUT,
 });

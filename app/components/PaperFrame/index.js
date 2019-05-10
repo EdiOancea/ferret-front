@@ -51,7 +51,7 @@ PaperFrame.propTypes = {
   classes: PropTypes.object.isRequired,
   headerText: PropTypes.string.isRequired,
   icon: PropTypes.object.isRequired,
-  children: PropTypes.object,
+  children: PropTypes.object || PropTypes.array,
 };
 
 export default withStyles(styles)(PaperFrame);
