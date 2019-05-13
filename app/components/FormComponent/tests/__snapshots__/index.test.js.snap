@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormComponent /> Should not regress 1`] = `
+<form
+  class="FormComponent-form-1"
+>
+  <div>
+    <div
+      class="MuiFormControl-root-2 MuiFormControl-fullWidth-5"
+    >
+      <label
+        class="MuiFormLabel-root-17 MuiInputLabel-root-6 MuiInputLabel-formControl-11 MuiInputLabel-animated-14"
+        data-shrink="false"
+      >
+        Email Address
+      </label>
+      <div
+        class="MuiInputBase-root-37 MuiInput-root-24 MuiInput-underline-28 MuiInputBase-fullWidth-46 MuiInput-fullWidth-31 MuiInputBase-formControl-38 MuiInput-formControl-25"
+      >
+        <input
+          aria-invalid="false"
+          class="MuiInputBase-input-47 MuiInput-input-32 MuiInputBase-inputType-50 MuiInput-inputType-35"
+          name="email"
+          type="email"
+        />
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="MuiFormControl-root-2 MuiFormControl-fullWidth-5"
+    >
+      <label
+        class="MuiFormLabel-root-17 MuiInputLabel-root-6 MuiInputLabel-formControl-11 MuiInputLabel-animated-14"
+        data-shrink="false"
+      >
+        Password
+      </label>
+      <div
+        class="MuiInputBase-root-37 MuiInput-root-24 MuiInput-underline-28 MuiInputBase-fullWidth-46 MuiInput-fullWidth-31 MuiInputBase-formControl-38 MuiInput-formControl-25"
+      >
+        <input
+          aria-invalid="false"
+          class="MuiInputBase-input-47 MuiInput-input-32 MuiInputBase-inputType-50 MuiInput-inputType-35"
+          name="password"
+          type="password"
+        />
+      </div>
+    </div>
+  </div>
+  <label
+    class="MuiFormControlLabel-root-54"
+  >
+    <span
+      class="MuiButtonBase-root-76 MuiIconButton-root-70 MuiPrivateSwitchBase-root-66 MuiCheckbox-root-60 MuiCheckbox-colorPrimary-64"
+    >
+      <span
+        class="MuiIconButton-label-75"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root-79"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+          />
+        </svg>
+        <input
+          class="MuiPrivateSwitchBase-input-69"
+          data-indeterminate="false"
+          type="checkbox"
+          value="remember"
+        />
+      </span>
+    </span>
+    <span
+      class="MuiTypography-root-88 MuiTypography-body1-97 MuiFormControlLabel-label-59"
+    >
+      Remember me
+    </span>
+  </label>
+  <button
+    class="MuiButtonBase-root-76 MuiButton-root-125 MuiButton-contained-136 MuiButton-containedPrimary-137 MuiButton-raised-139 MuiButton-raisedPrimary-140 MuiButton-fullWidth-150 FormButton-submit-124"
+    tabindex="0"
+    type="submit"
+  >
+    <span
+      class="MuiButton-label-126"
+    >
+      SIGN IN
+    </span>
+  </button>
+  <div>
+    test error message
+  </div>
+</form>
+`;

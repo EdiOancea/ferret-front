@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormButton /> should not regress 1`] = `
+<button
+  class="MuiButtonBase-root-28 MuiButton-root-2 MuiButton-contained-13 MuiButton-containedPrimary-14 MuiButton-raised-16 MuiButton-raisedPrimary-17 MuiButton-fullWidth-27 FormButton-submit-1"
+  tabindex="0"
+  type="submit"
+>
+  <span
+    class="MuiButton-label-3"
+  >
+    test text
+  </span>
+</button>
+`;

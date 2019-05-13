@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> should not regress 1`] = `
+<div>
+  <FormikConnect(FieldInner)
+    name="testName"
+  >
+    <Component />
+  </FormikConnect(FieldInner)>
+  <FormikConnect(ErrorMessageImpl)
+    name="testName"
+  />
+</div>
+`;
