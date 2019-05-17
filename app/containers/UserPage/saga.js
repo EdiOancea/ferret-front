@@ -2,7 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 
 import getUserRequest from 'services/getUserRequest';
 import { GET_USER } from './constants';
-import { getUserSuccess, getUserFailed } from './actions';
+import { getUserSuccess, getUserFailure } from './actions';
 
 export function* getUser(action) {
   const { token } = action;
@@ -10,7 +10,7 @@ export function* getUser(action) {
   if (response.id !== undefined) {
     yield put(getUserSuccess(response));
   } else {
-    yield put(getUserFailed());
+    yield put(getUserFailure());
   }
 }
 

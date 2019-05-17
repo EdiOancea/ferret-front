@@ -1,7 +1,7 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import { SIGN_IN } from '../constants';
 import requestSignInSaga, { signIn } from '../saga';
-import { signInSuccess, signInFailed } from '../actions';
+import { signInSuccess, signInFailure} from '../actions';
 
 jest.mock('services/signInRequest');
 
@@ -19,7 +19,7 @@ describe('signInSaga', () => {
     const signInGenerator = signIn({ data: 0 });
     expect(signInGenerator.next().value).toEqual({ message: 'message' });
     expect(signInGenerator.next({ message: 'message' }).value).toEqual(
-      put(signInFailed('message')),
+      put(signInFailure('message')),
     );
   });
 

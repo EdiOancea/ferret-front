@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -21,7 +22,7 @@ class UserPage extends React.Component {
   render() {
     return <UserContent {...this.props} />;
   }
-}
+};
 
 UserPage.propTypes = {
   onLoad: PropTypes.func.isRequired,

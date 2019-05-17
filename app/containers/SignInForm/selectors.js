@@ -1,7 +1,8 @@
 import { createSelector } from 'reselect';
 
-export const selectSignIn = state => state.get('signIn');
+export const selectSignInDomain = state => state.get('signIn');
 
-export const selectErrorMessage = createSelector(selectSignIn, signIn =>
-  signIn.get('errorMessage'),
+export const selectErrorMessage = createSelector(
+  selectSignInDomain,
+  signIn => signIn.get('errorMessage')
 );

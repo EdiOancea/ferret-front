@@ -3,7 +3,7 @@ import { fromJS } from 'immutable';
 import signInReducer from 'containers/SignInForm/reducer';
 import {
   SIGN_IN_SUCCESS,
-  SIGN_IN_FAILED,
+  SIGN_IN_FAILURE,
 } from 'containers/SignInForm/constants';
 
 describe('signInReducer', () => {
@@ -29,7 +29,7 @@ describe('signInReducer', () => {
   it('changes the error message', () => {
     expect(
       signInReducer(undefined, {
-        type: SIGN_IN_FAILED,
+        type: SIGN_IN_FAILURE,
         errorMessage: 'oof',
       }).toJS(),
     ).toEqual({
