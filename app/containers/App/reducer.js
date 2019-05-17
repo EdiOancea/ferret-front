@@ -2,26 +2,26 @@ import { fromJS } from 'immutable';
 
 import {
   SIGN_IN_SUCCESS,
-  SIGN_IN_FAILED,
+  SIGN_IN_FAILURE,
 } from 'containers/SignInForm/constants';
 
-import { IS_LOADING, IS_NOT_LOADING } from 'containers/App/constants';
+import { SHOW_LOADER, HIDE_LOADER } from './constants';
 
 const initialState = fromJS({
   token: '',
-  loading: true,
+  isLoading: false,
 });
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case SIGN_IN_SUCCESS:
       return state.set('token', action.token);
-    case SIGN_IN_FAILED:
+    case SIGN_IN_FAILURE:
       return state.set('token', '');
-    case IS_LOADING:
-      return state.set('loading', true);
-    case IS_NOT_LOADING:
-      return state.set('loading', false);
+    case SHOW_LOADER:
+      return state.set('isLoading', true);
+    case HIDE_LOADER:
+      return state.set('isLoading', false);
     default:
       return state;
   }

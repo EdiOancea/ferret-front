@@ -1,14 +1,14 @@
 import { fromJS } from 'immutable';
 
-import { selectErrorMessage, selectSignIn } from '../selectors';
+import { selectErrorMessage, selectSignInDomain } from '../selectors';
 
-describe('selectSignIn', () => {
+describe('selectSignInDomain', () => {
   it('should select the sign in state', () => {
     const signInState = fromJS({});
     const mockedState = fromJS({
       signIn: signInState,
     });
-    expect(selectSignIn(mockedState)).toEqual(signInState);
+    expect(selectSignInDomain(mockedState)).toEqual(signInState);
   });
 });
 

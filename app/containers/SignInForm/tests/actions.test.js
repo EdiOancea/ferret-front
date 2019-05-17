@@ -1,5 +1,5 @@
-import { SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILED } from '../constants';
-import { signIn, signInSuccess, signInFailed } from '../actions';
+import { SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from '../constants';
+import { signIn, signInSuccess, signInFailure } from '../actions';
 
 describe('sign in actions', () => {
   it('returns signIn', () => {
@@ -13,9 +13,9 @@ describe('sign in actions', () => {
     });
   });
 
-  it('returns signInFailed', () => {
-    expect(signInFailed('errorMessage')).toEqual({
-      type: SIGN_IN_FAILED,
+  it('returns signInFailure', () => {
+    expect(signInFailure('errorMessage')).toEqual({
+      type: SIGN_IN_FAILURE,
       errorMessage: 'errorMessage',
     });
   });

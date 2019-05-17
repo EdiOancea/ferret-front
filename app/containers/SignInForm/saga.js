@@ -2,7 +2,8 @@ import { takeLatest, put } from 'redux-saga/effects';
 
 import signInRequest from 'services/signInRequest';
 import { SIGN_IN } from './constants';
-import { signInSuccess, signInFailed } from './actions';
+import { signInSuccess, signInFailure } from './actions';
+import { showLoader, hideLoader } from 'containers/App/actions';
 
 export function* signIn(action) {
   const { data } = action;
@@ -10,7 +11,7 @@ export function* signIn(action) {
   if (response.token) {
     yield put(signInSuccess(response.token));
   } else {
-    yield put(signInFailed(response.message));
+    yield put(signInFailure(response.message));
   }
 }
 

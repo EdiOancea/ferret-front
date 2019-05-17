@@ -9,24 +9,55 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectToken, selectLoading } from './selectors';
 
-import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import SignInPage from 'containers/SignInPage/Loadable';
-import UserPage from 'containers/UserPage/Loadable';
-import PrivateRoute from 'containers/PrivateRoute';
 import GlobalStyle from 'global-styles';
+import AuthenticatedApp from 'components/AuthenticatedApp';
+import NotAuthenticatedApp from 'components/NotAuthenticatedApp';
+import Loading from 'components/Loading';
 
-export default function App() {
-  return (
-    <div>
-      <Switch>
-        <Route path="/signin" component={SignInPage} />
-        <PrivateRoute path="/home" PrivateComponent={UserPage} />
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
-      <GlobalStyle />
-    </div>
-  );
-}
+const renderItem = (isLoading, token) => {
+  if (isLoading === true) {
+    return <Loading />;
+  }
+
+  if (!token) {
+    return <NotAuthenticatedApp />;
+  }
+
+  return <AuthenticatedApp />;
+};
+
+class App extends React.Component {
+  render() {
+    const { isLoading, token } = this.props;
+
+    return (
+      <div>
+        {renderItem(isLoading, token)}
+        <GlobalStyle />
+      </div>
+    );
+  }
+};
+
+App.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  token: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = createStructuredSelector({
+  isLoading: selectLoading,
+  token: selectToken,
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  null,
+);
+
+export default withConnect(App);
