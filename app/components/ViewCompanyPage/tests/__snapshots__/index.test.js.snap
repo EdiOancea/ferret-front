@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ViewCompanyPage /> should not regress 1`] = `
+<WithStyles(PaperFrame)
+  headerText="Company Information"
+  icon={<pure(ViewHeadlineOutlinedIcon) />}
+/>
+`;
