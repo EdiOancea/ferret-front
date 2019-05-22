@@ -1,9 +1,9 @@
 import {
   ADD_COMPANY,
   ADD_COMPANY_SUCCESS,
-  ADD_COMPANY_FAILED,
+  ADD_COMPANY_FAILURE,
 } from '../constants';
-import { addCompany, addCompanySuccess, addCompanyFailed } from '../actions';
+import { addCompany, addCompanySuccess, addCompanyFailure } from '../actions';
 import { company } from '../../../../tools/mockData';
 
 describe('add company actions', () => {
@@ -18,9 +18,9 @@ describe('add company actions', () => {
     });
   });
 
-  it('returns addCompanyFailed', () => {
-    expect(addCompanyFailed('errorMessage')).toEqual({
-      type: ADD_COMPANY_FAILED,
+  it('returns addCompanyFailure', () => {
+    expect(addCompanyFailure('errorMessage')).toEqual({
+      type: ADD_COMPANY_FAILURE,
       errorMessage: 'errorMessage',
     });
   });

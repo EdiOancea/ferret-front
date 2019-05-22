@@ -3,7 +3,7 @@ import { fromJS } from 'immutable';
 import addCompanyReducer from 'containers/AddCompanyForm/reducer';
 import {
   ADD_COMPANY_SUCCESS,
-  ADD_COMPANY_FAILED,
+  ADD_COMPANY_FAILURE,
 } from 'containers/AddCompanyForm/constants';
 import { company } from '../../../../tools/mockData';
 
@@ -30,7 +30,7 @@ describe('addCompanyReducer', () => {
   it('changes the error message', () => {
     expect(
       addCompanyReducer(undefined, {
-        type: ADD_COMPANY_FAILED,
+        type: ADD_COMPANY_FAILURE,
         errorMessage: 'This is an error',
       }).toJS(),
     ).toEqual({

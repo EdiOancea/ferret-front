@@ -1,7 +1,7 @@
 import {
   ADD_COMPANY,
   ADD_COMPANY_SUCCESS,
-  ADD_COMPANY_FAILED,
+  ADD_COMPANY_FAILURE,
 } from './constants';
 
 export const addCompany = data => ({
@@ -14,7 +14,7 @@ export const addCompanySuccess = company => ({
   company,
 });
 
-export const addCompanyFailed = errorMessage => ({
-  type: ADD_COMPANY_FAILED,
+export const addCompanyFailure = errorMessage => ({
+  type: ADD_COMPANY_FAILURE,
   errorMessage,
 });

@@ -1,7 +1,7 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import addCompanyRequest from 'services/addCompanyRequest';
 import { ADD_COMPANY } from './constants';
-import { addCompanySuccess, addCompanyFailed } from './actions';
+import { addCompanySuccess, addCompanyFailure } from './actions';
 
 export function* addCompany(action) {
   const { data } = action;
@@ -9,7 +9,7 @@ export function* addCompany(action) {
   if (response.id) {
     yield put(addCompanySuccess(response));
   } else {
-    yield put(addCompanyFailed(response.message));
+    yield put(addCompanyFailure(response.message));
   }
 }
 

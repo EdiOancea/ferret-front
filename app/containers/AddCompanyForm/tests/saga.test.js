@@ -1,7 +1,7 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import { ADD_COMPANY } from '../constants';
 import requestAddCompanySaga, { addCompany } from '../saga';
-import { addCompanySuccess, addCompanyFailed } from '../actions';
+import { addCompanySuccess, addCompanyFailure } from '../actions';
 import { company } from '../../../../tools/mockData';
 
 jest.mock('services/addCompanyRequest');
@@ -22,7 +22,7 @@ describe('addCompanySaga', () => {
     const addCompanyGenerator = addCompany({ data: 0 });
     expect(addCompanyGenerator.next().value).toEqual({ message: 'message' });
     expect(addCompanyGenerator.next({ message: 'message' }).value).toEqual(
-      put(addCompanyFailed('message')),
+      put(addCompanyFailure('message')),
     );
   });
 

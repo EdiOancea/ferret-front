@@ -18,19 +18,11 @@ const config = {
     name: '',
     address: '',
     business: '',
-    rating: '',
-    manager: '',
-    active: '',
   },
   validationSchema: Yup.object().shape({
-    name: Yup.string('')
-      .email('Invalid email address.')
-      .required('This field is required.'),
+    name: Yup.string('').required('This field is required.'),
     address: Yup.string().required('This field is required'),
     business: Yup.string().required('This field is required'),
-    rating: Yup.string(),
-    manager: Yup.string(),
-    active: Yup.string(),
   }),
   fields: [
     {
@@ -58,30 +50,6 @@ const config = {
       },
     },
     {
-      type: 'input',
-      options: {
-        type: 'rating',
-        label: 'Rating',
-        name: 'rating',
-      },
-    },
-    {
-      type: 'input',
-      options: {
-        type: 'manager',
-        label: 'Manager',
-        name: 'manager',
-      },
-    },
-    {
-      type: 'input',
-      options: {
-        type: 'active',
-        label: 'Active',
-        name: 'active',
-      },
-    },
-    {
       type: 'button',
       options: {
         text: 'SUBMIT',
@@ -92,7 +60,10 @@ const config = {
 };
 
 export class AddCompanyForm extends React.Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
 
   render() {
     return <FormComponent {...{ ...config, ...this.props }} />;
