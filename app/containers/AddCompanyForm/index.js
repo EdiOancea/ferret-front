@@ -71,7 +71,7 @@ export class AddCompanyForm extends React.Component {
 }
 
 AddCompanyForm.propTypes = {
-  errorMessage: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
 };
 
