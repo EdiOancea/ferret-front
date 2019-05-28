@@ -17,7 +17,7 @@ const ViewCompanyPage = props => (
 ViewCompanyPage.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      slug: PropTypes.number.isRequired,
+      slug: PropTypes.string.isRequired,
     }),
   }),
 };

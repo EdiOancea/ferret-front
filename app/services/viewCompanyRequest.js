@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+import 'isomorphic-fetch';
 import { API_URL } from 'config';
 
 const viewCompanyRequest = async id => {

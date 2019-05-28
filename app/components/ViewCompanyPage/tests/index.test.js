@@ -5,8 +5,13 @@ import ViewCompanyPage from 'components/ViewCompanyPage';
 
 describe('<ViewCompanyPage />', () => {
   it('should not regress', () => {
+    const config = {
+      params: {
+        slug: '1',
+      },
+    };
     const tree = shallow(
-      <ViewCompanyPage>
+      <ViewCompanyPage match={config}>
         <div> a </div>
       </ViewCompanyPage>,
     );

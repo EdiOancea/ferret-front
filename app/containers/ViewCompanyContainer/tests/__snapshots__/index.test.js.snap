@@ -1,0 +1,247 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ViewCompanyContainer /> should render nothing when company does not exist 1`] = `
+<div
+  class="Item-root-1"
+>
+  <table
+    class="MuiTable-root-3 Item-table-2"
+  >
+    <tbody
+      class="MuiTableBody-root-4"
+    />
+  </table>
+</div>
+`;
+
+exports[`<ViewCompanyContainer /> should render the company item correctly 1`] = `
+<div
+  class="Item-root-1"
+>
+  <table
+    class="MuiTable-root-3 Item-table-2"
+  >
+    <tbody
+      class="MuiTableBody-root-4"
+    >
+      <tr
+        class="MuiTableRow-root-5"
+      >
+        <td
+          class="MuiTableCell-root-10 MuiTableCell-body-12 MuiTableCell-alignCenter-19"
+        >
+          Name
+        </td>
+        <td
+          class="MuiTableCell-root-10 MuiTableCell-body-12 MuiTableCell-alignCenter-19"
+        >
+          Name
+        </td>
+      </tr>
+      <tr
+        class="MuiTableRow-root-5"
+      >
+        <td
+          class="MuiTableCell-root-10 MuiTableCell-body-12 MuiTableCell-alignCenter-19"
+        >
+          Address
+        </td>
+        <td
+          class="MuiTableCell-root-10 MuiTableCell-body-12 MuiTableCell-alignCenter-19"
+        >
+          Address
+        </td>
+      </tr>
+      <tr
+        class="MuiTableRow-root-5"
+      >
+        <td
+          class="MuiTableCell-root-10 MuiTableCell-body-12 MuiTableCell-alignCenter-19"
+        >
+          Business
+        </td>
+        <td
+          class="MuiTableCell-root-10 MuiTableCell-body-12 MuiTableCell-alignCenter-19"
+        >
+          Business
+        </td>
+      </tr>
+      <tr
+        class="MuiTableRow-root-5"
+      >
+        <td
+          class="MuiTableCell-root-10 MuiTableCell-body-12 MuiTableCell-alignCenter-19"
+        >
+          Rating
+        </td>
+        <td
+          class="MuiTableCell-root-10 MuiTableCell-body-12 MuiTableCell-alignCenter-19"
+        >
+          <div
+            class="Rating-root-22"
+          >
+            <button
+              class="MuiButtonBase-root-33 MuiIconButton-root-27 Rating-iconButton-23"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiIconButton-label-32"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root-36 Rating-icon-24"
+                  color="#e0e0e0"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </span>
+            </button>
+            <button
+              class="MuiButtonBase-root-33 MuiIconButton-root-27 Rating-iconButton-23"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiIconButton-label-32"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root-36 Rating-icon-24"
+                  color="#e0e0e0"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </span>
+            </button>
+            <button
+              class="MuiButtonBase-root-33 MuiIconButton-root-27 Rating-iconButton-23"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiIconButton-label-32"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root-36 Rating-icon-24"
+                  color="#e0e0e0"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </span>
+            </button>
+            <button
+              class="MuiButtonBase-root-33 MuiIconButton-root-27 Rating-iconButton-23"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiIconButton-label-32"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root-36 Rating-icon-24"
+                  color="#e0e0e0"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </span>
+            </button>
+            <button
+              class="MuiButtonBase-root-33 MuiIconButton-root-27 Rating-iconButton-23"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiIconButton-label-32"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root-36 Rating-icon-24"
+                  color="#e0e0e0"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="MuiTableRow-root-5"
+      >
+        <td
+          class="MuiTableCell-root-10 MuiTableCell-body-12 MuiTableCell-alignCenter-19"
+        >
+          Manager
+        </td>
+        <td
+          class="MuiTableCell-root-10 MuiTableCell-body-12 MuiTableCell-alignCenter-19"
+        >
+          undefined
+        </td>
+      </tr>
+      <tr
+        class="MuiTableRow-root-5"
+      >
+        <td
+          class="MuiTableCell-root-10 MuiTableCell-body-12 MuiTableCell-alignCenter-19"
+        >
+          Active
+        </td>
+        <td
+          class="MuiTableCell-root-10 MuiTableCell-body-12 MuiTableCell-alignCenter-19"
+        >
+          undefined
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

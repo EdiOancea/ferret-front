@@ -4,5 +4,9 @@ exports[`<ViewCompanyPage /> should not regress 1`] = `
 <WithStyles(PaperFrame)
   headerText="Company Information"
   icon={<pure(ViewHeadlineOutlinedIcon) />}
-/>
+>
+  <withSaga(withReducer(Connect(ViewCompanyContainer)))
+    slug="1"
+  />
+</WithStyles(PaperFrame)>
 `;

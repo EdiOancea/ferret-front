@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { VIEW_COMPANY_SUCCESS, VIEW_COMPANY_FAILED } from './constants';
+import { VIEW_COMPANY_SUCCESS, VIEW_COMPANY_FAILURE } from './constants';
 
 const initialState = fromJS({
   company: {},
@@ -11,7 +11,7 @@ const viewCompanyReducer = (state = initialState, action) => {
   switch (action.type) {
     case VIEW_COMPANY_SUCCESS:
       return state.set('errorMessage', '').set('company', action.company);
-    case VIEW_COMPANY_FAILED:
+    case VIEW_COMPANY_FAILURE:
       return state.set('errorMessage', action.errorMessage).set('company', {});
     default:
       return state;

@@ -1,7 +1,7 @@
 import {
   VIEW_COMPANY,
   VIEW_COMPANY_SUCCESS,
-  VIEW_COMPANY_FAILED,
+  VIEW_COMPANY_FAILURE,
 } from './constants';
 
 export const viewCompany = id => ({
@@ -14,7 +14,7 @@ export const viewCompanySuccess = company => ({
   company,
 });
 
-export const viewCompanyFailed = errorMessage => ({
-  type: VIEW_COMPANY_FAILED,
+export const viewCompanyFailure = errorMessage => ({
+  type: VIEW_COMPANY_FAILURE,
   errorMessage,
 });

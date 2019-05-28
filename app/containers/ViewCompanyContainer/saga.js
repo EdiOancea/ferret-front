@@ -1,7 +1,7 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import viewCompanyRequest from 'services/viewCompanyRequest';
 import { VIEW_COMPANY } from './constants';
-import { viewCompanySuccess, viewCompanyFailed } from './actions';
+import { viewCompanySuccess, viewCompanyFailure } from './actions';
 
 export function* viewCompany(action) {
   const { id } = action;
@@ -9,7 +9,7 @@ export function* viewCompany(action) {
   if (response.id) {
     yield put(viewCompanySuccess(response));
   } else {
-    yield put(viewCompanyFailed(response.message));
+    yield put(viewCompanyFailure(response.message));
   }
 }
 

@@ -6,26 +6,40 @@ import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import ItemComponent from 'components/ItemComponent';
+import Item from 'components/Item';
 import { selectCompany, selectErrorMessage } from './selectors';
 import { viewCompany } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
-// const config = {};
-
 export class ViewCompanyContainer extends React.Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
 
   componentDidMount() {
     this.props.getCompanyBySlug(this.props.slug);
   }
 
+  formatForDisplay() {
+    const company = {
+      Name: this.props.company.name,
+      Address: this.props.company.address,
+      Business: this.props.company.business,
+      Rating: this.props.company.rating,
+      Manager: this.props.company.manager,
+      Active: this.props.company.active,
+    };
+
+    return this.props.company.id ? company : {};
+  }
+
   render() {
     return (
-      <ItemComponent
+      <Item
         {...{
-          item: this.props.company,
+          getItem: () => this.formatForDisplay(),
           ...this.props,
         }}
       />
@@ -34,8 +48,9 @@ export class ViewCompanyContainer extends React.Component {
 }
 
 ViewCompanyContainer.propTypes = {
-  errorMessage: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string,
   company: PropTypes.object.isRequired,
+  slug: PropTypes.string.isRequired,
 };
 
 export const mapStateToProps = createStructuredSelector({
