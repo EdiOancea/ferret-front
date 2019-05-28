@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddCompanyPage /> should not regress 1`] = `
+<WithStyles(PaperFrame)
+  headerText="Add Company"
+  icon={<pure(CreateOutlinedIcon) />}
+>
+  <withSaga(withReducer(Connect(AddCompanyForm))) />
+</WithStyles(PaperFrame)>
+`;
