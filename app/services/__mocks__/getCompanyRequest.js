@@ -1,7 +1,7 @@
 import { company } from '../../../tools/mockData';
 
-const viewCompanyRequest = jest.fn(
+const getCompanyRequest = jest.fn(
   id => (id === '1' ? company : { message: 'message' }),
 );
 
-export default viewCompanyRequest;
+export default getCompanyRequest;

@@ -3,23 +3,23 @@ import PropTypes from 'prop-types';
 import ViewHeadlineOutlinedIcon from '@material-ui/icons/ViewHeadlineOutlined';
 
 import PaperFrame from 'components/PaperFrame';
-import ViewCompanyContainer from 'containers/ViewCompanyContainer';
+import ViewCompanyContainer from 'containers/ViewCompany';
 
-const ViewCompanyPage = props => (
+const CompanyPage = props => (
   <PaperFrame
     headerText="Company Information"
     icon={<ViewHeadlineOutlinedIcon />}
   >
-    <ViewCompanyContainer slug={props.match.params.slug} />
+    <ViewCompanyContainer id={props.match.params.id} />
   </PaperFrame>
 );
 
-ViewCompanyPage.propTypes = {
+CompanyPage.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      slug: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
     }),
   }),
 };
 
-export default ViewCompanyPage;
+export default CompanyPage;

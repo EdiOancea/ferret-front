@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ViewCompanyPage /> should not regress 1`] = `
+exports[`<CompanyPage /> should not regress 1`] = `
 <WithStyles(PaperFrame)
   headerText="Company Information"
   icon={<pure(ViewHeadlineOutlinedIcon) />}
 >
-  <withSaga(withReducer(Connect(ViewCompanyContainer)))
-    slug="1"
+  <withSaga(withReducer(Connect(ViewCompany)))
+    id="1"
   />
 </WithStyles(PaperFrame)>
 `;

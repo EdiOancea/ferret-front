@@ -2,19 +2,19 @@ import React from 'react';
 import { render } from 'enzyme';
 import { fromJS } from 'immutable';
 import {
-  ViewCompanyContainer,
+  ViewCompany,
   mapStateToProps,
   mapDispatchToProps,
-} from 'containers/ViewCompanyContainer';
+} from 'containers/ViewCompany';
 import { company } from '../../../../tools/mockData';
 
-describe('<ViewCompanyContainer />', () => {
+describe('<ViewCompany />', () => {
   it('should get the error if view company failed', () => {
-    const viewCompanyState = fromJS({
+    const getCompanyState = fromJS({
       errorMessage: 'This is an error',
     });
     const initialState = fromJS({
-      viewCompany: viewCompanyState,
+      getCompany: getCompanyState,
     });
     expect(mapStateToProps(initialState).errorMessage).toEqual(
       'This is an error',
@@ -23,33 +23,25 @@ describe('<ViewCompanyContainer />', () => {
 
   it('should view company when page is loaded', () => {
     const dispatch = jest.fn();
-    mapDispatchToProps(dispatch).getCompanyBySlug('1');
+    mapDispatchToProps(dispatch).fetchCompany('1');
     expect(dispatch.mock.calls[0][0]).toEqual({
-      type: 'VIEW_COMPANY',
+      type: 'GET_COMPANY',
       id: '1',
     });
   });
 
   it('should render the company item correctly', () => {
-    const getCompanyBySlug = jest.fn();
+    const fetchCompany = jest.fn();
     const tree = render(
-      <ViewCompanyContainer
-        slug="1"
-        company={company}
-        getCompanyBySlug={getCompanyBySlug}
-      />,
+      <ViewCompany id="1" company={company} fetchCompany={fetchCompany} />,
     );
     expect(tree).toMatchSnapshot();
   });
 
   it('should render nothing when company does not exist', () => {
-    const getCompanyBySlug = jest.fn();
+    const fetchCompany = jest.fn();
     const tree = render(
-      <ViewCompanyContainer
-        slug={NaN}
-        company={{}}
-        getCompanyBySlug={getCompanyBySlug}
-      />,
+      <ViewCompany id={NaN} company={{}} fetchCompany={fetchCompany} />,
     );
     expect(tree).toMatchSnapshot();
   });

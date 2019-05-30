@@ -1,7 +1,7 @@
 import 'isomorphic-fetch';
 import { API_URL } from 'config';
 
-const viewCompanyRequest = async id => {
+const getCompanyRequest = async id => {
   const res = await fetch(`${API_URL}/companies/${id}`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -10,4 +10,4 @@ const viewCompanyRequest = async id => {
   return res.json();
 };
 
-export default viewCompanyRequest;
+export default getCompanyRequest;

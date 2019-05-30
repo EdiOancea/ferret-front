@@ -6,51 +6,43 @@ import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import Item from 'components/Item';
+import Company from 'components/Company';
 import { selectCompany, selectErrorMessage } from './selectors';
-import { viewCompany } from './actions';
+import { getCompany } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
-export class ViewCompanyContainer extends React.Component {
+export class ViewCompany extends React.Component {
   constructor(props) {
     super(props);
     this.props = props;
   }
 
   componentDidMount() {
-    this.props.getCompanyBySlug(this.props.slug);
+    this.props.fetchCompany(this.props.id);
   }
 
   formatForDisplay() {
+    if (!this.props.company) {
+      return null;
+    }
     const company = {
-      Name: this.props.company.name,
-      Address: this.props.company.address,
-      Business: this.props.company.business,
-      Rating: this.props.company.rating,
-      Manager: this.props.company.manager,
-      Active: this.props.company.active,
+      active: this.props.company.deletedAt ? 'False' : 'True',
+      ...this.props.company,
     };
 
-    return this.props.company.id ? company : {};
+    return company;
   }
 
   render() {
-    return (
-      <Item
-        {...{
-          getItem: () => this.formatForDisplay(),
-          ...this.props,
-        }}
-      />
-    );
+    return <Company company={this.formatForDisplay()} />;
   }
 }
 
-ViewCompanyContainer.propTypes = {
-  errorMessage: PropTypes.string,
-  company: PropTypes.object.isRequired,
-  slug: PropTypes.string.isRequired,
+ViewCompany.propTypes = {
+  company: PropTypes.object,
+  id: PropTypes.string.isRequired,
+  fetchCompany: PropTypes.func.isRequired,
 };
 
 export const mapStateToProps = createStructuredSelector({
@@ -59,16 +51,16 @@ export const mapStateToProps = createStructuredSelector({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  getCompanyBySlug: slug => dispatch(viewCompany(slug)),
+  fetchCompany: id => dispatch(getCompany(id)),
 });
 
 const withReducer = injectReducer({
-  key: 'viewCompany',
+  key: 'getCompany',
   reducer,
 });
 
 const withSaga = injectSaga({
-  key: 'viewCompany',
+  key: 'getCompany',
   saga,
 });
 
@@ -81,4 +73,4 @@ export default compose(
   withSaga,
   withReducer,
   withConnect,
-)(ViewCompanyContainer);
+)(ViewCompany);

@@ -1,19 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ViewCompanyPage from 'components/ViewCompanyPage';
+import CompanyPage from 'components/CompanyPage';
 
-describe('<ViewCompanyPage />', () => {
+describe('<CompanyPage />', () => {
   it('should not regress', () => {
     const config = {
       params: {
-        slug: '1',
+        id: '1',
       },
     };
     const tree = shallow(
-      <ViewCompanyPage match={config}>
-        <div> a </div>
-      </ViewCompanyPage>,
+      <CompanyPage match={config}>
+        <div>a</div>
+      </CompanyPage>,
     );
     expect(tree.children.length).toBe(1);
     expect(tree).toMatchSnapshot();

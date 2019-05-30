@@ -1,17 +1,17 @@
 import { fromJS } from 'immutable';
 
-import viewCompanyReducer from 'containers/ViewCompanyContainer/reducer';
+import getCompanyReducer from 'containers/ViewCompany/reducer';
 import {
-  VIEW_COMPANY_SUCCESS,
-  VIEW_COMPANY_FAILURE,
-} from 'containers/ViewCompanyContainer/constants';
+  GET_COMPANY_SUCCESS,
+  GET_COMPANY_FAILURE,
+} from 'containers/ViewCompany/constants';
 import { company } from '../../../../tools/mockData';
 
-describe('viewCompanyReducer', () => {
+describe('getCompanyReducer', () => {
   it('returns the initial state', () => {
-    expect(viewCompanyReducer(undefined, {})).toEqual(
+    expect(getCompanyReducer(undefined, {})).toEqual(
       fromJS({
-        company: {},
+        company: null,
         errorMessage: '',
       }),
     );
@@ -19,8 +19,8 @@ describe('viewCompanyReducer', () => {
 
   it('adds the company and erases the error message', () => {
     expect(
-      viewCompanyReducer(undefined, {
-        type: VIEW_COMPANY_SUCCESS,
+      getCompanyReducer(undefined, {
+        type: GET_COMPANY_SUCCESS,
         company,
       }).toJS(),
     ).toEqual({
@@ -31,13 +31,13 @@ describe('viewCompanyReducer', () => {
 
   it('erases the company and changes the error message', () => {
     expect(
-      viewCompanyReducer(undefined, {
-        type: VIEW_COMPANY_FAILURE,
+      getCompanyReducer(undefined, {
+        type: GET_COMPANY_FAILURE,
         errorMessage: 'This is an error',
       }).toJS(),
     ).toEqual({
       errorMessage: 'This is an error',
-      company: {},
+      company: null,
     });
   });
 });
