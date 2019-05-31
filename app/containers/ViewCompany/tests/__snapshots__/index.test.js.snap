@@ -6,42 +6,42 @@ exports[`<ViewCompany /> should render nothing when company does not exist 1`] =
 >
   <div>
     <div
-      class="makeStyles-field-2"
+      class="makeStyles-label-2"
     >
       Name
     </div>
     <div
-      class="makeStyles-field-2"
+      class="makeStyles-label-2"
     />
   </div>
   <div>
     <div
-      class="makeStyles-field-2"
+      class="makeStyles-label-2"
     >
       Address
     </div>
     <div
-      class="makeStyles-field-2"
+      class="makeStyles-label-2"
     />
   </div>
   <div>
     <div
-      class="makeStyles-field-2"
+      class="makeStyles-label-2"
     >
       Business
     </div>
     <div
-      class="makeStyles-field-2"
+      class="makeStyles-label-2"
     />
   </div>
   <div>
     <div
-      class="makeStyles-field-2"
+      class="makeStyles-label-2"
     >
       Rating
     </div>
     <div
-      class="makeStyles-field-2"
+      class="makeStyles-label-2"
     >
       <div
         class="Rating-root-1"
