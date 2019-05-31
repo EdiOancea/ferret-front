@@ -10,13 +10,13 @@ const useStyles = makeStyles({
 });
 
 const Field = props => {
-  const { field } = props;
+  const { field, children } = props;
   const classes = useStyles();
 
   return (
     <div>
       <div className={classes.field}>{field}</div>
-      <div className={classes.field}>{props.children}</div>
+      <div className={classes.field}>{children}</div>
     </div>
   );
 };
