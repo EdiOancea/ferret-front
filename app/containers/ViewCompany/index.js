@@ -13,29 +13,12 @@ import reducer from './reducer';
 import saga from './saga';
 
 export class ViewCompany extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-  }
-
   componentDidMount() {
     this.props.fetchCompany(this.props.id);
   }
 
-  formatForDisplay() {
-    if (!this.props.company) {
-      return null;
-    }
-    const company = {
-      active: this.props.company.deletedAt ? 'False' : 'True',
-      ...this.props.company,
-    };
-
-    return company;
-  }
-
   render() {
-    return <Company company={this.formatForDisplay()} />;
+    return <Company company={this.props.company} />;
   }
 }
 
