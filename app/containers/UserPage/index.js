@@ -32,7 +32,8 @@ class UserPage extends React.Component {
 
 UserPage.propTypes = {
   onLoad: PropTypes.func.isRequired,
-  loggedUser: PropTypes.object,
+  loggedUserId: PropTypes.number,
+  loggedUserMeta: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

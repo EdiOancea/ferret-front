@@ -10,7 +10,8 @@ const UserContent = ({ firstName, lastName }) => (
 );
 
 UserContent.propTypes = {
-  name: PropTypes.string,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
 };
 
 export default UserContent;
