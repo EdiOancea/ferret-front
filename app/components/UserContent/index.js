@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import PaperFrame from 'components/PaperFrame';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-const UserContent = ({ name }) => (
+const UserContent = ({ firstName, lastName }) => (
   <PaperFrame headerText="Welcome" icon={<AccountCircleIcon />}>
-    <div>{name}</div>
+    <div>{`${firstName} ${lastName}`}</div>
   </PaperFrame>
 );
 
 UserContent.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
 };
-
 
 export default UserContent;

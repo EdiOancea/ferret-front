@@ -1,19 +1,19 @@
 import apiRequest from './apiRequest';
 import parseJwt from './parseJwt';
+import ls from 'local-storage';
 
-const getUserRequest = async token => {
-  const id = parseJwt(token).id;
-  if (id !== undefined) {
-    return await apiRequest({
-      url: `/users/${id}`,
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
+const getUserRequest = async id => {
+  const token = ls.get('token');
 
-  return {};
+  return (
+    await apiRequest(
+      'GET',
+      `/users/${id}`,
+      {},
+      { Authorization: `Bearer ${token}` },
+    )
+  );
 };
+
 
 export default getUserRequest;

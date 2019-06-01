@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 
 import {
   SIGN_IN_SUCCESS,
-  SIGN_IN_Failure,
+  SIGN_IN_FAILURE,
 } from 'containers/SignInForm/constants';
 import appReducer from '../reducer';
 

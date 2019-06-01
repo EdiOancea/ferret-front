@@ -8,44 +8,44 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import UserContent from 'components/UserContent';
-import { selectToken } from 'containers/App/selectors';
-import { selectUserName } from './selectors';
+import {
+  selectToken,
+  selectLoggedUserMeta,
+  selectLoggedUserId
+} from 'containers/app/selectors';
 import { getUser } from './actions';
-import reducer from './reducer';
 import saga from './saga';
 
 class UserPage extends React.Component {
   componentDidMount() {
-    this.props.onLoad(this.props.token);
+    const { onLoad, loggedUserId } = this.props;
+
+    onLoad(loggedUserId);
   }
 
   render() {
-    return <UserContent {...this.props} />;
+    const { loggedUserMeta } = this.props;
+
+    return <UserContent {...loggedUserMeta} />;
   }
 };
 
 UserPage.propTypes = {
   onLoad: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  token: PropTypes.string.isRequired,
+  loggedUser: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  name: selectUserName,
-  token: selectToken,
+  loggedUserMeta: selectLoggedUserMeta,
+  loggedUserId: selectLoggedUserId,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: token => dispatch(getUser(token)),
-});
-
-const withReducer = injectReducer({
-  key: 'user',
-  reducer,
+  onLoad: id => dispatch(getUser(id)),
 });
 
 const withSaga = injectSaga({
-  key: 'user',
+  key: 'loggedUser',
   saga,
 });
 
@@ -56,6 +56,5 @@ const withConnect = connect(
 
 export default compose(
   withSaga,
-  withReducer,
   withConnect,
 )(UserPage);
