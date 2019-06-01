@@ -1,56 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
-import Grid from '@material-ui/core/Grid';
-import FolderIcon from '@material-ui/icons/Folder';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
-  main: {
-    flexGrow: 1,
-    maxWidth: '50%',
+  header: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
-  demo: {
-    backgroundColor: theme.palette.background.paper,
+  avatar: {
+    margin: '5% 0% 2% 0%',
+    backgroundColor: theme.palette.secondary.main,
   },
 });
 
 const ListFrame = props => {
-  const { classes, companies } = props;
-
-  const renderList = () => {
-    if (!companies) {
-      return null;
-    }
-
-    return companies.map(company => (
-      <ListItem key={company.id}>
-        <ListItemAvatar>
-          <Avatar>
-            <FolderIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary={company.name} />
-      </ListItem>
-    ));
-  };
+  const { classes, headerText, icon, children } = props;
 
   return (
-    <Grid item xs={12} md={6} className={classes.main}>
-      <div className={classes.demo}>
-        <List>{renderList()}</List>
+    <>
+      <div className={classes.header}>
+        <Avatar className={classes.avatar}>{icon}</Avatar>
+        <Typography variant="h5">{headerText}</Typography>
       </div>
-    </Grid>
+      {children}
+    </>
   );
 };
 
 ListFrame.propTypes = {
-  companies: PropTypes.array,
   classes: PropTypes.object.isRequired,
+  headerText: PropTypes.string.isRequired,
+  icon: PropTypes.object.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default withStyles(styles)(ListFrame);
