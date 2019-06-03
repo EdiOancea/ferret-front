@@ -309,6 +309,16 @@ exports[`<ViewCompany /> should render nothing when company does not exist 1`] =
       </div>
     </div>
   </div>
+  <div>
+    <div
+      class="makeStyles-label-2"
+    >
+      Timetable
+    </div>
+    <div
+      class="makeStyles-label-2"
+    />
+  </div>
 </div>
 `;
 

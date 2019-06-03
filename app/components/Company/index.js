@@ -23,6 +23,7 @@ const Company = props => {
       <Line label="Rating">
         <Rating value={company.rating} max={10} />
       </Line>
+      <Line label="Timetable">{company.timetable}</Line>
     </div>
   );
 };
