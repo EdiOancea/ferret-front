@@ -12,13 +12,13 @@ import LaunchIcon from '@material-ui/icons/Launch';
 import Divider from '@material-ui/core/Divider';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
-const styles = theme => ({
+const styles = () => ({
   main: {
     margin: '2% 25% 0% 25%',
   },
 });
 
-const ListFrame = props => {
+const CompaniesList = props => {
   const { classes, companies } = props;
 
   const renderList = () => {
@@ -49,9 +49,9 @@ const ListFrame = props => {
   return <List className={classes.main}>{renderList()}</List>;
 };
 
-ListFrame.propTypes = {
+CompaniesList.propTypes = {
   companies: PropTypes.array,
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ListFrame);
+export default withStyles(styles)(CompaniesList);

@@ -6,23 +6,23 @@ import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import List from 'components/List';
+import CompaniesList from 'components/CompaniesList';
 import { selectCompanies, selectErrorMessage } from './selectors';
 import { getCompanies } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
-export class CompanyList extends React.Component {
+export class ListCompanies extends React.Component {
   componentDidMount() {
     this.props.fetchCompanies();
   }
 
   render() {
-    return <List companies={this.props.companies} />;
+    return <CompaniesList companies={this.props.companies} />;
   }
 }
 
-CompanyList.propTypes = {
+ListCompanies.propTypes = {
   companies: PropTypes.array,
   fetchCompanies: PropTypes.func.isRequired,
 };
@@ -55,4 +55,4 @@ export default compose(
   withSaga,
   withReducer,
   withConnect,
-)(CompanyList);
+)(ListCompanies);
