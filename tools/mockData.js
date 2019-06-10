@@ -3,6 +3,7 @@ const company = {
   name: 'Name',
   address: 'Address',
   business: 'Business',
+  timetable: 'TestTimetable',
 };
 
 export { company };
