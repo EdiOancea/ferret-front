@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILED } from './constants';
+import { SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from './constants';
 
 export const signIn = data => ({
   type: SIGN_IN,
@@ -10,7 +10,7 @@ export const signInSuccess = token => ({
   token,
 });
 
-export const signInFailed = errorMessage => ({
-  type: SIGN_IN_FAILED,
+export const signInFailure = errorMessage => ({
+  type: SIGN_IN_FAILURE,
   errorMessage,
 });

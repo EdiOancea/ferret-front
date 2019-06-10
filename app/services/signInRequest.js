@@ -1,13 +1,11 @@
-import fetch from 'isomorphic-fetch';
-import { API_URL } from 'config';
+import apiRequest from './apiRequest';
 
-const signInRequest = async data => {
-  const res = await fetch(`${API_URL}/signin`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
-  return res.json();
-};
+const signInRequest = async data => (
+  await apiRequest(
+    'POST',
+    '/signin',
+    JSON.stringify(data)
+  )
+);
 
 export default signInRequest;
