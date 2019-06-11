@@ -8,41 +8,37 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectToken, selectLoading } from './selectors';
 
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import GlobalStyle from 'global-styles';
 import AuthenticatedApp from 'components/AuthenticatedApp';
 import NotAuthenticatedApp from 'components/NotAuthenticatedApp';
 import Loading from 'components/Loading';
+import { selectToken, selectLoading } from './selectors';
 
-const renderItem = (isLoading, token) => {
-  if (isLoading === true) {
-    return <Loading />;
-  }
+const App = props => {
+  const { isLoading, token } = props;
 
-  if (!token) {
-    return <NotAuthenticatedApp />;
-  }
+  const renderItem = () => {
+    if (isLoading === true) {
+      return <Loading />;
+    }
 
-  return <AuthenticatedApp />;
-};
+    if (!token) {
+      return <NotAuthenticatedApp />;
+    }
 
-class App extends React.Component {
-  render() {
-    const { isLoading, token } = this.props;
+    return <AuthenticatedApp />;
+  };
 
-    return (
-      <div>
-        {renderItem(isLoading, token)}
-        <GlobalStyle />
-      </div>
-    );
-  }
+  return (
+    <div>
+      {renderItem()}
+      <GlobalStyle />
+    </div>
+  );
 };
 
 App.propTypes = {
