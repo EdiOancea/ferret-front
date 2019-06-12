@@ -4,7 +4,7 @@ import SlideShow from 'react-image-show';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Rating from 'material-ui-rating';
 import Divider from '@material-ui/core/Divider';
-import Line from 'components/Line';
+import Line from 'components/Line/Loadable';
 
 const styles = theme => ({
   root: {
