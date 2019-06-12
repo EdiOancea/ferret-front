@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
+import SlideShow from 'react-image-show';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Rating from 'material-ui-rating';
-import Line from 'components/Line/Loadable';
+import Divider from '@material-ui/core/Divider';
+import Line from 'components/Line';
 
-const useStyles = makeStyles({
+const styles = theme => ({
   root: {
     marginTop: '30px',
     fontSize: '20px',
@@ -12,24 +14,51 @@ const useStyles = makeStyles({
 });
 
 const Company = props => {
-  const { company } = props;
-  const classes = useStyles();
+  const { classes, company } = props;
+
+  const renderSlideShow = () => {
+    const imageURLs = company.images.map(image => image.url);
+
+    return (
+      <SlideShow
+        className={classes.slideShow}
+        images={imageURLs}
+        width="100%"
+        imagesWidth="300px"
+        imagesHeight="225px"
+        imagesHeightMobile="100%"
+        thumbnailsWidth="100%"
+        thumbnailsHeight="100%"
+        infinite
+        indicators
+        thumbnails
+        fixedImagesHeight
+      />
+    );
+  };
 
   return (
     <div className={classes.root}>
       <Line label="Name">{company.name}</Line>
+      <Divider />
       <Line label="Address">{company.address}</Line>
+      <Divider />
       <Line label="Business">{company.business}</Line>
+      <Divider />
       <Line label="Rating">
-        <Rating value={company.rating} max={10} />
+        <Rating value={company.rating} max={5} />
       </Line>
+      <Divider />
       <Line label="Timetable">{company.timetable}</Line>
+      <Divider />
+      {renderSlideShow()}
     </div>
   );
 };
 
 Company.propTypes = {
+  classes: PropTypes.object.isRequired,
   company: PropTypes.object,
 };
 
-export default Company;
+export default withStyles(styles)(Company);
