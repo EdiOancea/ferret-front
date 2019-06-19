@@ -8,6 +8,7 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import CompanyReviewComponent from 'components/CompanyReview';
+import { selectLoggedUserId } from 'containers/App/selectors';
 import {
   selectErrorMessage,
   selectHasReviewed,
@@ -51,8 +52,9 @@ class CompanyReview extends React.Component {
       <CompanyReviewComponent
         onSubmit={values =>
           this.props.onSubmit({
-            rating: this.props.rating,
+            userId: this.props.loggedUserId,
             companyId: this.props.companyId,
+            rating: this.props.rating,
             ...values,
           })
         }
@@ -77,10 +79,12 @@ CompanyReview.propTypes = {
   onRating: PropTypes.func.isRequired,
   hasReviewed: PropTypes.bool.isRequired,
   canComment: PropTypes.bool.isRequired,
+  loggedUserId: PropTypes.number.isRequired,
 };
 
 export const mapStateToProps = createStructuredSelector({
   errorMessage: selectErrorMessage,
+  loggedUserId: selectLoggedUserId,
   hasReviewed: selectHasReviewed,
   canComment: selectCanComment,
   rating: selectRating,
