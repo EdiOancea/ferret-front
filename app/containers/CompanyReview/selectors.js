@@ -8,9 +8,3 @@ export const selectErrorMessage = createSelector(selectAddReview, addReview =>
 export const selectHasReviewed = createSelector(selectAddReview, addReview =>
   addReview.get('hasReviewed'),
 );
-export const selectCanComment = createSelector(selectAddReview, addReview =>
-  addReview.get('canComment'),
-);
-export const selectRating = createSelector(selectAddReview, addReview =>
-  addReview.get('rating'),
-);

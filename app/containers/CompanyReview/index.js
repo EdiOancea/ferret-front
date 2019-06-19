@@ -9,13 +9,8 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import CompanyReviewComponent from 'components/CompanyReview';
 import { selectLoggedUserId } from 'containers/App/selectors';
-import {
-  selectErrorMessage,
-  selectHasReviewed,
-  selectCanComment,
-  selectRating,
-} from './selectors';
-import { addReview, setCanComment } from './actions';
+import { selectErrorMessage, selectHasReviewed } from './selectors';
+import { addReview } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -45,8 +40,21 @@ const config = {
   ],
 };
 
-/* eslint-disable react/prefer-stateless-function */
 class CompanyReview extends React.Component {
+  state = {
+    canComment: false,
+    rating: 0,
+  };
+
+  onRating(rating) {
+    const { state } = this;
+    this.setState({
+      canComment: true,
+      rating,
+      ...state,
+    });
+  }
+
   render() {
     return (
       <CompanyReviewComponent
@@ -54,15 +62,15 @@ class CompanyReview extends React.Component {
           this.props.onSubmit({
             userId: this.props.loggedUserId,
             companyId: this.props.companyId,
-            rating: this.props.rating,
+            rating: this.state.rating,
             ...values,
           })
         }
-        rating={this.props.rating}
-        onRating={this.props.onRating}
+        rating={this.state.rating}
+        onRating={this.onRating}
         errorMessage={this.props.errorMessage}
         hasReviewed={this.props.hasReviewed}
-        canComment={this.props.canComment}
+        canComment={this.state.canComment}
         {...{
           ...config,
         }}
@@ -75,10 +83,7 @@ CompanyReview.propTypes = {
   companyId: PropTypes.number.isRequired,
   errorMessage: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
-  rating: PropTypes.number.isRequired,
-  onRating: PropTypes.func.isRequired,
   hasReviewed: PropTypes.bool.isRequired,
-  canComment: PropTypes.bool.isRequired,
   loggedUserId: PropTypes.number.isRequired,
 };
 
@@ -86,12 +91,9 @@ export const mapStateToProps = createStructuredSelector({
   errorMessage: selectErrorMessage,
   loggedUserId: selectLoggedUserId,
   hasReviewed: selectHasReviewed,
-  canComment: selectCanComment,
-  rating: selectRating,
 });
 
 export const mapDispatchToProps = dispatch => ({
-  onRating: value => dispatch(setCanComment(value)),
   onSubmit: values => dispatch(addReview(values)),
 });
 

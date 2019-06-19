@@ -4,7 +4,6 @@ import {
   ADD_REVIEW_SUCCESS,
   ADD_REVIEW_FAILURE,
   SET_HAS_REVIEWED,
-  SET_CAN_COMMENT,
 } from './constants';
 
 const initialState = fromJS({
@@ -22,10 +21,6 @@ const addReviewReducer = (state = initialState, action) => {
       return state.set('errorMessage', action.errorMessage);
     case SET_HAS_REVIEWED:
       return state.set('hasReviewed', action.hasReviewed);
-    case SET_CAN_COMMENT:
-      return state
-        .set('canComment', action.canComment)
-        .set('rating', action.rating);
     default:
       return state;
   }
