@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import Rating from 'material-ui-rating';
-import Line from 'components/Line/Loadable';
+import withStyles from '@material-ui/core/styles/withStyles';
 
-const useStyles = makeStyles({
+import Line from 'components/Line/Loadable';
+import CompanyReview from 'containers/CompanyReview';
+
+const styles = () => ({
   root: {
     marginTop: '30px',
     fontSize: '20px',
@@ -12,24 +13,22 @@ const useStyles = makeStyles({
 });
 
 const Company = props => {
-  const { company } = props;
-  const classes = useStyles();
+  const { classes, company } = props;
 
   return (
     <div className={classes.root}>
       <Line label="Name">{company.name}</Line>
       <Line label="Address">{company.address}</Line>
       <Line label="Business">{company.business}</Line>
-      <Line label="Rating">
-        <Rating value={company.rating} max={10} />
-      </Line>
       <Line label="Timetable">{company.timetable}</Line>
+      <CompanyReview companyId={company.id} />
     </div>
   );
 };
 
 Company.propTypes = {
+  classes: PropTypes.object.isRequired,
   company: PropTypes.object,
 };
 
-export default Company;
+export default withStyles(styles)(Company);
