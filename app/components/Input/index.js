@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from 'components/TextInput';
-import ImageInput from 'containers/ImageInput';
+import FileInput from 'containers/FileInput';
 import { Field, ErrorMessage } from 'formik';
 
 const Input = ({ name, label, type, setFieldValue }) => {
   const renderFields = ({ field, form }) =>
     name === 'images' ? (
-      <ImageInput {...{ name, label, type, form, field, setFieldValue }} />
+      <FileInput {...{ name, field, setFieldValue }} />
     ) : (
       <TextInput {...{ name, label, type, form, field }} />
     );
