@@ -5,8 +5,6 @@ class ImageInput extends React.Component {
   constructor(props) {
     super(props);
     this.fileUpload = React.createRef();
-    this.showFileUpload = this.showFileUpload.bind(this);
-    this.handleImageChange = this.handleImageChange.bind(this);
   }
 
   showFileUpload() {
@@ -25,8 +23,8 @@ class ImageInput extends React.Component {
 
     return (
       <ImageInputComponent
-        showFileUpload={this.showFileUpload}
-        handleImageChange={this.handleImageChange}
+        showFileUpload={(...params) => this.showFileUpload(...params)}
+        handleImageChange={(...params) => this.handleImageChange(...params)}
         fileUpload={this.fileUpload}
         {...{ name, label, type, setFieldValue }}
       />
