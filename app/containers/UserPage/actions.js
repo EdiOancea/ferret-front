@@ -5,9 +5,9 @@ import {
   SIGN_OUT,
 } from './constants';
 
-export const getUser = token => ({
+export const getUser = id => ({
   type: GET_USER,
-  token,
+  id,
 });
 
 export const getUserSuccess = user => ({

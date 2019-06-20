@@ -1,4 +1,10 @@
-import { SHOW_LOADER, HIDE_LOADER, SIGN_OUT } from './constants';
+import {
+  SHOW_LOADER,
+  HIDE_LOADER,
+  GET_USER_SUCCESS,
+  GET_USER_FAILURE,
+  SIGN_OUT,
+} from './constants';
 
 export const showLoader = () => ({
   type: SHOW_LOADER,
@@ -10,4 +16,13 @@ export const hideLoader = () => ({
 
 export const signOut = () => ({
   type: SIGN_OUT,
+});
+
+export const getUserSuccess = user => ({
+  type: GET_USER_SUCCESS,
+  user,
+});
+
+export const getUserFailure = () => ({
+  type: GET_USER_FAILURE,
 });

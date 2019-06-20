@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PaperFrame from 'components/PaperFrame';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+import PaperFrame from 'components/PaperFrame';
 import LogOutButton from 'containers/LogOutButton';
 
-const UserContent = ({ name }) => (
+const UserContent = ({ firstName, lastName }) => (
   <PaperFrame headerText="Welcome" icon={<AccountCircleIcon />}>
-    {name}
+    <div>{`${firstName} ${lastName}`}</div>
     <LogOutButton />
   </PaperFrame>
 );
 
 UserContent.propTypes = {
-  name: PropTypes.string.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
 };
-
 
 export default UserContent;
