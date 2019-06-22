@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Rating from 'material-ui-rating';
+import Divider from '@material-ui/core/Divider';
 
 import Line from 'components/Line/Loadable';
 import FormComponent from 'components/FormComponent';
@@ -18,11 +19,14 @@ const CompanyReview = props => {
 
   const renderCommentForm = () =>
     canComment ? (
-      <FormComponent
-        onSubmit={onSubmit}
-        errorMessage={errorMessage}
-        {...{ ...config }}
-      />
+      <>
+        <FormComponent
+          onSubmit={onSubmit}
+          errorMessage={errorMessage}
+          {...{ ...config }}
+        />
+        <Divider />
+      </>
     ) : null;
 
   const renderReviewForm = () =>
@@ -31,6 +35,7 @@ const CompanyReview = props => {
         <Line label="Rating">
           <Rating value={rating} max={5} onChange={value => onRating(value)} />
         </Line>
+        <Divider />
         {renderCommentForm()}
       </>
     ) : null;

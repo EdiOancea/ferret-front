@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 
-const useStyles = makeStyles({
+const styles = theme => ({
+  line: {
+    overflow: 'auto',
+  },
   label: {
     float: 'left',
     width: '50%',
@@ -10,11 +13,10 @@ const useStyles = makeStyles({
 });
 
 const Field = props => {
-  const { label, children } = props;
-  const classes = useStyles();
+  const { classes, label, children } = props;
 
   return (
-    <div>
+    <div className={classes.line}>
       <div className={classes.label}>{label}</div>
       <div className={classes.label}>{children}</div>
     </div>
@@ -22,8 +24,9 @@ const Field = props => {
 };
 
 Field.propTypes = {
+  classes: PropTypes.object.isRequired,
   label: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
 };
 
-export default Field;
+export default withStyles(styles)(Field);
