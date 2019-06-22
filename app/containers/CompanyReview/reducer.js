@@ -9,7 +9,8 @@ import {
 
 const initialState = fromJS({
   errorMessage: '',
-  wasReviewed: false,
+  wasReviewed: true,
+  rating: 0,
 });
 
 const addReviewReducer = (state = initialState, action) => {
@@ -17,10 +18,14 @@ const addReviewReducer = (state = initialState, action) => {
     case ADD_REVIEW_SUCCESS:
       return state
         .set('errorMessage', '')
-        .set('wasReviewed', action.wasReviewed);
+        .set('wasReviewed', action.wasReviewed)
+        .set('rating', action.rating);
     case ADD_REVIEW_FAILURE:
       return state.set('errorMessage', action.errorMessage);
     case REVIEW_EXISTS_SUCCESS:
+      return state
+        .set('wasReviewed', action.wasReviewed)
+        .set('rating', action.rating);
     case REVIEW_EXISTS_FAILURE:
       return state.set('wasReviewed', action.wasReviewed);
     default:

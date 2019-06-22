@@ -14,7 +14,7 @@ export const addReview = data => ({
 
 export const addReviewSuccess = review => ({
   type: ADD_REVIEW_SUCCESS,
-  review,
+  rating: review.rating,
   wasReviewed: true,
 });
 
@@ -29,8 +29,9 @@ export const reviewExists = (userId, companyId) => ({
   companyId,
 });
 
-export const reviewExistsSuccess = () => ({
+export const reviewExistsSuccess = review => ({
   type: REVIEW_EXISTS_SUCCESS,
+  rating: review.rating,
   wasReviewed: true,
 });
 

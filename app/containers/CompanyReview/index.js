@@ -9,7 +9,11 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import CompanyReviewComponent from 'components/CompanyReview';
 import { selectLoggedUserId } from 'containers/App/selectors';
-import { selectErrorMessage, selectWasReviewed } from './selectors';
+import {
+  selectErrorMessage,
+  selectWasReviewed,
+  selectRating,
+} from './selectors';
 import { addReview, reviewExists as reviewExistsAction } from './actions';
 import reducer from './reducer';
 import saga from './saga';
@@ -43,7 +47,6 @@ const config = {
 class CompanyReview extends React.Component {
   state = {
     canComment: false,
-    rating: 0,
   };
 
   componentDidMount() {
@@ -56,7 +59,6 @@ class CompanyReview extends React.Component {
     this.setState({
       ...state,
       canComment: true,
-      rating,
     });
   }
 
@@ -67,8 +69,9 @@ class CompanyReview extends React.Component {
       companyId,
       errorMessage,
       wasReviewed,
+      rating,
     } = this.props;
-    const { canComment, rating } = this.state;
+    const { canComment } = this.state;
 
     return (
       <CompanyReviewComponent
@@ -100,12 +103,14 @@ CompanyReview.propTypes = {
   userId: PropTypes.number.isRequired,
   errorMessage: PropTypes.string,
   wasReviewed: PropTypes.bool.isRequired,
+  rating: PropTypes.number.isRequired,
 };
 
 export const mapStateToProps = createStructuredSelector({
   userId: selectLoggedUserId,
   errorMessage: selectErrorMessage,
   wasReviewed: selectWasReviewed,
+  rating: selectRating,
 });
 
 export const mapDispatchToProps = dispatch => ({

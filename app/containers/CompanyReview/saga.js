@@ -24,7 +24,7 @@ export function* reviewExists(action) {
   const data = { userId, companyId };
   const response = yield reviewExistsRequest(data);
   if (response.id) {
-    yield put(reviewExistsSuccess());
+    yield put(reviewExistsSuccess(response));
   } else {
     yield put(reviewExistsFailure());
   }

@@ -18,7 +18,7 @@ const CompanyReview = props => {
   } = props;
 
   const renderCommentForm = () =>
-    canComment ? (
+    !wasReviewed && canComment ? (
       <>
         <FormComponent
           onSubmit={onSubmit}
@@ -29,18 +29,20 @@ const CompanyReview = props => {
       </>
     ) : null;
 
-  const renderReviewForm = () =>
-    !wasReviewed ? (
-      <>
-        <Line label="Rating">
-          <Rating value={rating} max={5} onChange={value => onRating(value)} />
-        </Line>
-        <Divider />
-        {renderCommentForm()}
-      </>
-    ) : null;
-
-  return renderReviewForm();
+  return (
+    <>
+      <Line label="Rating">
+        <Rating
+          value={rating}
+          max={5}
+          onChange={value => onRating(value)}
+          readOnly={wasReviewed}
+        />
+      </Line>
+      <Divider />
+      {renderCommentForm()}
+    </>
+  );
 };
 
 CompanyReview.propTypes = {
