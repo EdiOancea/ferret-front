@@ -7,7 +7,7 @@ import FormComponent from 'components/FormComponent';
 
 const CompanyReview = props => {
   const {
-    hasReviewed,
+    wasReviewed,
     canComment,
     onRating,
     onSubmit,
@@ -26,7 +26,7 @@ const CompanyReview = props => {
     ) : null;
 
   const renderReviewForm = () =>
-    !hasReviewed ? (
+    !wasReviewed ? (
       <>
         <Line label="Rating">
           <Rating value={rating} max={5} onChange={value => onRating(value)} />
@@ -41,7 +41,7 @@ const CompanyReview = props => {
 CompanyReview.propTypes = {
   errorMessage: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
-  hasReviewed: PropTypes.bool.isRequired,
+  wasReviewed: PropTypes.bool.isRequired,
   canComment: PropTypes.bool.isRequired,
   fields: PropTypes.array.isRequired,
   initialValues: PropTypes.object.isRequired,

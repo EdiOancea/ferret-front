@@ -9,8 +9,8 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import CompanyReviewComponent from 'components/CompanyReview';
 import { selectLoggedUserId } from 'containers/App/selectors';
-import { selectErrorMessage, selectHasReviewed } from './selectors';
-import { addReview } from './actions';
+import { selectErrorMessage, selectWasReviewed } from './selectors';
+import { addReview, reviewExists as reviewExistsAction } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -46,32 +46,46 @@ class CompanyReview extends React.Component {
     rating: 0,
   };
 
+  componentDidMount() {
+    const { reviewExists, userId, companyId } = this.props;
+    reviewExists(userId, companyId);
+  }
+
   onRating(rating) {
     const { state } = this;
     this.setState({
+      ...state,
       canComment: true,
       rating,
-      ...state,
     });
   }
 
   render() {
+    const {
+      onSubmit,
+      userId,
+      companyId,
+      errorMessage,
+      wasReviewed,
+    } = this.props;
+    const { canComment, rating } = this.state;
+
     return (
       <CompanyReviewComponent
+        onRating={(...params) => this.onRating(...params)}
         onSubmit={values =>
-          this.props.onSubmit({
-            userId: this.props.loggedUserId,
-            companyId: this.props.companyId,
-            rating: this.state.rating,
+          onSubmit({
+            userId,
+            companyId,
+            rating,
             ...values,
           })
         }
-        rating={this.state.rating}
-        onRating={this.onRating}
-        errorMessage={this.props.errorMessage}
-        hasReviewed={this.props.hasReviewed}
-        canComment={this.state.canComment}
         {...{
+          errorMessage,
+          wasReviewed,
+          canComment,
+          rating,
           ...config,
         }}
       />
@@ -80,20 +94,23 @@ class CompanyReview extends React.Component {
 }
 
 CompanyReview.propTypes = {
-  companyId: PropTypes.number.isRequired,
-  errorMessage: PropTypes.string,
+  reviewExists: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  hasReviewed: PropTypes.bool.isRequired,
-  loggedUserId: PropTypes.number.isRequired,
+  companyId: PropTypes.number.isRequired,
+  userId: PropTypes.number.isRequired,
+  errorMessage: PropTypes.string,
+  wasReviewed: PropTypes.bool.isRequired,
 };
 
 export const mapStateToProps = createStructuredSelector({
+  userId: selectLoggedUserId,
   errorMessage: selectErrorMessage,
-  loggedUserId: selectLoggedUserId,
-  hasReviewed: selectHasReviewed,
+  wasReviewed: selectWasReviewed,
 });
 
 export const mapDispatchToProps = dispatch => ({
+  reviewExists: (userId, companyId) =>
+    dispatch(reviewExistsAction(userId, companyId)),
   onSubmit: values => dispatch(addReview(values)),
 });
 

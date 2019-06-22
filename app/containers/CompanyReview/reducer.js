@@ -3,24 +3,26 @@ import { fromJS } from 'immutable';
 import {
   ADD_REVIEW_SUCCESS,
   ADD_REVIEW_FAILURE,
-  SET_HAS_REVIEWED,
+  REVIEW_EXISTS_SUCCESS,
+  REVIEW_EXISTS_FAILURE,
 } from './constants';
 
 const initialState = fromJS({
   errorMessage: '',
-  hasReviewed: false,
-  canComment: false,
-  rating: 0,
+  wasReviewed: false,
 });
 
 const addReviewReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_REVIEW_SUCCESS:
-      return state.set('errorMessage', '');
+      return state
+        .set('errorMessage', '')
+        .set('wasReviewed', action.wasReviewed);
     case ADD_REVIEW_FAILURE:
       return state.set('errorMessage', action.errorMessage);
-    case SET_HAS_REVIEWED:
-      return state.set('hasReviewed', action.hasReviewed);
+    case REVIEW_EXISTS_SUCCESS:
+    case REVIEW_EXISTS_FAILURE:
+      return state.set('wasReviewed', action.wasReviewed);
     default:
       return state;
   }
