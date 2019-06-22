@@ -5,7 +5,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Line from 'components/Line/Loadable';
 import CompanyReview from 'containers/CompanyReview';
 
-const styles = () => ({
+const styles = theme => ({
   root: {
     marginTop: '30px',
     fontSize: '20px',
