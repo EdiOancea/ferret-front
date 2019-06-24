@@ -2,7 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 
 import getUserRequest from 'services/getUserRequest';
 import { GET_USER } from './constants';
-import { getUserSuccess, getUserFailed } from 'containers/app/actions';
+import { getUserSuccess, getUserFailure } from 'containers/app/actions';
 
 export function* getUser(action) {
   const { id } = action;
