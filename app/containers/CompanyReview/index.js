@@ -29,7 +29,7 @@ const config = {
     {
       type: 'input',
       options: {
-        type: 'comment',
+        type: 'text',
         label: 'Comment',
         name: 'comment',
       },

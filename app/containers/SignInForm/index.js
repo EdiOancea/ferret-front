@@ -28,7 +28,7 @@ const config = {
     {
       type: 'input',
       options: {
-        type: 'email',
+        type: 'text',
         label: 'Email Address',
         name: 'email',
       },
@@ -36,7 +36,7 @@ const config = {
     {
       type: 'input',
       options: {
-        type: 'password',
+        type: 'text',
         label: 'Password',
         name: 'password',
       },
