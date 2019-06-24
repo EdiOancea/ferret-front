@@ -38,20 +38,23 @@ const Company = props => {
     );
   };
 
-  return (
-    <div className={classes.root}>
-      <Line label="Name">{company.name}</Line>
-      <Divider />
-      <Line label="Address">{company.address}</Line>
-      <Divider />
-      <Line label="Business">{company.business}</Line>
-      <Divider />
-      <Line label="Timetable">{company.timetable}</Line>
-      <Divider />
-      <CompanyReview companyId={company.id} />
-      {renderSlideShow()}
-    </div>
-  );
+  const renderCompany = () =>
+    company ? (
+      <div className={classes.root}>
+        <Line label="Name">{company.name}</Line>
+        <Divider />
+        <Line label="Address">{company.address}</Line>
+        <Divider />
+        <Line label="Business">{company.business}</Line>
+        <Divider />
+        <Line label="Timetable">{company.timetable}</Line>
+        <Divider />
+        <CompanyReview companyId={company.id} />
+        {renderSlideShow()}
+      </div>
+    ) : null;
+
+  return renderCompany();
 };
 
 Company.propTypes = {
