@@ -1,8 +1,8 @@
 import { takeLatest, put } from 'redux-saga/effects';
 
 import getUserRequest from 'services/getUserRequest';
-import { GET_USER } from './constants';
 import { getUserSuccess, getUserFailure } from 'containers/app/actions';
+import { GET_USER } from './constants';
 
 export function* getUser(action) {
   const { id } = action;
