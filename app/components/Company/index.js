@@ -21,7 +21,6 @@ const Company = props => {
 
     return (
       <SlideShow
-        className={classes.slideShow}
         images={imageURLs}
         width="100%"
         imagesWidth="300px"
@@ -37,23 +36,22 @@ const Company = props => {
     );
   };
 
-  return (
-    <div className={classes.root}>
-      <Line label="Name">{company.name}</Line>
-      <Divider />
-      <Line label="Address">{company.address}</Line>
-      <Divider />
-      <Line label="Business">{company.business}</Line>
-      <Divider />
-      <Line label="Rating">
-        <Rating value={company.rating} max={5} />
-      </Line>
-      <Divider />
-      <Line label="Timetable">{company.timetable}</Line>
-      <Divider />
-      {renderSlideShow()}
-    </div>
-  );
+  const renderCompany = () =>
+    company ? (
+      <div className={classes.root}>
+        <Line label="Name">{company.name}</Line>
+        <Divider />
+        <Line label="Address">{company.address}</Line>
+        <Divider />
+        <Line label="Business">{company.business}</Line>
+        <Divider />
+        <Line label="Timetable">{company.timetable}</Line>
+        <Divider />
+        {renderSlideShow()}
+      </div>
+    ) : null;
+
+  return renderCompany();
 };
 
 Company.propTypes = {
