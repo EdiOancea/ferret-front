@@ -14,11 +14,17 @@ const styles = theme => ({
   },
 });
 
-const renderFields = fields =>
+const renderFields = (fields, options) =>
   fields.map(field => {
     switch (field.type) {
       case 'input':
-        return <Input key={field.options.name} {...field.options} />;
+        return (
+          <Input
+            key={field.options.name}
+            setFieldValue={options.setFieldValue}
+            {...field.options}
+          />
+        );
       case 'button':
         return <FormButton key={field.options.name} {...field.options} />;
       case 'checkbox':
@@ -43,9 +49,9 @@ const FormComponent = props => {
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
-      render={() => (
+      render={({ setFieldValue }) => (
         <Form className={classes.form}>
-          {renderFields(fields)}
+          {renderFields(fields, { setFieldValue })}
           <div>{errorMessage}</div>
         </Form>
       )}

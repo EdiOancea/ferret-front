@@ -5,6 +5,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Rating from 'material-ui-rating';
 import Divider from '@material-ui/core/Divider';
 import Line from 'components/Line/Loadable';
+import CompanyReview from 'containers/CompanyReview';
 
 const styles = theme => ({
   root: {
@@ -21,6 +22,7 @@ const Company = props => {
 
     return (
       <SlideShow
+        className={classes.slideShow}
         images={imageURLs}
         width="100%"
         imagesWidth="300px"
@@ -47,6 +49,7 @@ const Company = props => {
         <Divider />
         <Line label="Timetable">{company.timetable}</Line>
         <Divider />
+        <CompanyReview companyId={company.id} />
         {renderSlideShow()}
       </div>
     ) : null;
