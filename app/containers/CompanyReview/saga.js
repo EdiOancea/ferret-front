@@ -20,8 +20,8 @@ export function* addReview(action) {
 }
 
 export function* reviewExists(action) {
-  const { userId, companyId } = action;
-  const data = { userId, companyId };
+  const { companyId } = action;
+  const data = { companyId };
   const response = yield reviewExistsRequest(data);
   if (response.id) {
     yield put(reviewExistsSuccess(response));

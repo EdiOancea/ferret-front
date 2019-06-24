@@ -1,21 +1,44 @@
 import fetch from 'isomorphic-fetch';
+import ls from 'local-storage';
+
 import { API_URL } from 'config';
-import parseJwt from './parseJwt';
 
-const apiRequest = async (method, url, body = {}, headers = {}) => {
-  body = method === 'GET' ? undefined : body;
+class Api {
+  constructor(apiUrl) {
+    this.apiUrl = apiUrl;
+  }
 
-  const res = await fetch(
-    `${API_URL}${url}`, {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      ...headers,
-    },
-    body,
-  });
+  get(path, params = {}, headers = {}) {
+    return this.request('GET', params, headers);
+  }
 
-  return res.json();
-};
+  post(path, body, params = {}, headers = {}) {
+    return this.request('POST', params, headers, body);
+  }
 
-export default apiRequest;
+  put(path, body, params = {}, headers = {}) {
+    return this.request('PUT', params, headers, body);
+  }
+
+  delete(path, params = {}, headers) {
+    return this.request('DELETE', params, headers);
+  }
+
+  async request(method, path, params = {}, headers = {}, body = {}) {
+    const token = ls.get('token');
+
+    const res = await fetch(`${this.apiUrl}${path}`, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token ? `Bearer ${token}` : undefined,
+        ...headers,
+      },
+      body,
+    });
+
+    return res.json();
+  }
+}
+
+export default new Api(API_URL);

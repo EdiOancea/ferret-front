@@ -8,7 +8,6 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import CompanyReviewComponent from 'components/CompanyReview';
-import { selectLoggedUserId } from 'containers/App/selectors';
 import {
   selectErrorMessage,
   selectWasReviewed,
@@ -50,8 +49,8 @@ class CompanyReview extends React.Component {
   };
 
   componentDidMount() {
-    const { reviewExists, userId, companyId } = this.props;
-    reviewExists(userId, companyId);
+    const { reviewExists, companyId } = this.props;
+    reviewExists(companyId);
   }
 
   onRating(rating) {
@@ -65,7 +64,6 @@ class CompanyReview extends React.Component {
   render() {
     const {
       onSubmit,
-      userId,
       companyId,
       errorMessage,
       wasReviewed,
@@ -78,7 +76,6 @@ class CompanyReview extends React.Component {
         onRating={(...params) => this.onRating(...params)}
         onSubmit={values =>
           onSubmit({
-            userId,
             companyId,
             rating,
             ...values,
@@ -100,22 +97,19 @@ CompanyReview.propTypes = {
   reviewExists: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   companyId: PropTypes.number.isRequired,
-  userId: PropTypes.number.isRequired,
   errorMessage: PropTypes.string,
   wasReviewed: PropTypes.bool.isRequired,
   rating: PropTypes.number.isRequired,
 };
 
 export const mapStateToProps = createStructuredSelector({
-  userId: selectLoggedUserId,
   errorMessage: selectErrorMessage,
   wasReviewed: selectWasReviewed,
   rating: selectRating,
 });
 
 export const mapDispatchToProps = dispatch => ({
-  reviewExists: (userId, companyId) =>
-    dispatch(reviewExistsAction(userId, companyId)),
+  reviewExists: companyId => dispatch(reviewExistsAction(companyId)),
   onSubmit: values => dispatch(addReview(values)),
 });
 

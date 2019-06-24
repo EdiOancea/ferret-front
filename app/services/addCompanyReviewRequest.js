@@ -1,14 +1,12 @@
-import fetch from 'isomorphic-fetch';
-import { API_URL } from 'config';
+import apiRequest from './apiRequest';
 
 const addReviewRequest = async data => {
-  const res = await fetch(`${API_URL}/company-reviews`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
+  const { companyId, ...bodyData } = data;
 
-  return res.json();
+  return apiRequest.post(
+    `/companies/${companyId}/reviews`,
+    JSON.stringify(bodyData),
+  );
 };
 
 export default addReviewRequest;
