@@ -18,11 +18,13 @@ const config = {
     name: '',
     address: '',
     business: '',
+    images: '',
   },
   validationSchema: Yup.object().shape({
     name: Yup.string('').required('This field is required.'),
     address: Yup.string().required('This field is required'),
     business: Yup.string().required('This field is required'),
+    images: Yup.mixed().required('This field is required'),
   }),
   fields: [
     {
@@ -47,6 +49,14 @@ const config = {
         type: 'business',
         label: 'Business',
         name: 'business',
+      },
+    },
+    {
+      type: 'input',
+      options: {
+        type: 'images',
+        label: 'Images',
+        name: 'images',
       },
     },
     {
