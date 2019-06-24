@@ -30,7 +30,7 @@ const config = {
     {
       type: 'input',
       options: {
-        type: 'name',
+        type: 'text',
         label: 'Name',
         name: 'name',
       },
@@ -38,7 +38,7 @@ const config = {
     {
       type: 'input',
       options: {
-        type: 'address',
+        type: 'text',
         label: 'Address',
         name: 'address',
       },
@@ -46,7 +46,7 @@ const config = {
     {
       type: 'input',
       options: {
-        type: 'business',
+        type: 'text',
         label: 'Business',
         name: 'business',
       },
