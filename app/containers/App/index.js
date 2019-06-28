@@ -19,6 +19,7 @@ import AuthenticatedApp from 'components/AuthenticatedApp';
 import NotAuthenticatedApp from 'components/NotAuthenticatedApp';
 import Loading from 'components/Loading';
 import { selectToken, selectLoading } from './selectors';
+import { loadToken as loadTokenAction } from './actions';
 
 const renderItem = (isLoading, token) => {
   if (isLoading === true) {
@@ -34,6 +35,10 @@ const renderItem = (isLoading, token) => {
 
 /* eslint-disable react/prefer-stateless-function */
 class App extends React.Component {
+  componentDidMount() {
+    this.props.loadToken();
+  }
+
   render() {
     const { isLoading, token } = this.props;
 
@@ -49,6 +54,7 @@ class App extends React.Component {
 App.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
+  loadToken: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -56,9 +62,13 @@ const mapStateToProps = createStructuredSelector({
   token: selectToken,
 });
 
+const mapDispatchToProps = dispatch => ({
+  loadToken: () => dispatch(loadTokenAction()),
+});
+
 const withConnect = connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 );
 
 export default withConnect(App);

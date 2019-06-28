@@ -9,10 +9,9 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import UserContent from 'components/UserContent';
 import {
-  selectToken,
   selectLoggedUserMeta,
-  selectLoggedUserId
-} from 'containers/app/selectors';
+  selectLoggedUserId,
+} from 'containers/App/selectors';
 import { getUser } from './actions';
 import saga from './saga';
 
@@ -28,7 +27,7 @@ class UserPage extends React.Component {
 
     return <UserContent {...loggedUserMeta} />;
   }
-};
+}
 
 UserPage.propTypes = {
   onLoad: PropTypes.func.isRequired,

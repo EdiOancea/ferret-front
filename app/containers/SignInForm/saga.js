@@ -9,7 +9,6 @@ export function* signIn(action) {
   const { data } = action;
   const response = yield signInRequest(data);
   if (response.token) {
-    ls.set('token', response.token);
     yield put(signInSuccess(response.token));
   } else {
     yield put(signInFailure(response.message));

@@ -1,7 +1,7 @@
 import { takeLatest, put } from 'redux-saga/effects';
 
 import getUserRequest from 'services/getUserRequest';
-import { getUserSuccess, getUserFailure } from 'containers/app/actions';
+import { getUserSuccess, getUserFailure } from 'containers/App/actions';
 import { GET_USER } from './constants';
 
 export function* getUser(action) {

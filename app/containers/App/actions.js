@@ -1,10 +1,15 @@
 import {
+  LOAD_TOKEN,
   SHOW_LOADER,
   HIDE_LOADER,
   GET_USER_SUCCESS,
   GET_USER_FAILURE,
   SIGN_OUT,
 } from './constants';
+
+export const loadToken = () => ({
+  type: LOAD_TOKEN,
+});
 
 export const showLoader = () => ({
   type: SHOW_LOADER,
