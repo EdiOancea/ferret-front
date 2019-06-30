@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch';
-import ls from 'local-storage';
 
 import { API_URL } from 'config';
 
@@ -9,29 +8,26 @@ class Api {
   }
 
   get(path, params = {}, headers = {}) {
-    return this.request('GET', params, headers);
+    return this.request('GET', path, params, headers);
   }
 
   post(path, body, params = {}, headers = {}) {
-    return this.request('POST', params, headers, body);
+    return this.request('POST', path, params, headers, body);
   }
 
   put(path, body, params = {}, headers = {}) {
-    return this.request('PUT', params, headers, body);
+    return this.request('PUT', path, params, headers, body);
   }
 
-  delete(path, params = {}, headers) {
-    return this.request('DELETE', params, headers);
+  delete(path, params = {}, headers = {}) {
+    return this.request('DELETE', path, params, headers);
   }
 
-  async request(method, path, params = {}, headers = {}, body = {}) {
-    const token = ls.get('token');
-
+  async request(method, path, params = {}, headers = {}, body) {
     const res = await fetch(`${this.apiUrl}${path}`, {
       method,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: token ? `Bearer ${token}` : undefined,
         ...headers,
       },
       body,
