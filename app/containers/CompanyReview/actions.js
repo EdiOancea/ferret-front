@@ -23,9 +23,8 @@ export const addReviewFailure = errorMessage => ({
   errorMessage,
 });
 
-export const reviewExists = (userId, companyId) => ({
+export const reviewExists = companyId => ({
   type: REVIEW_EXISTS,
-  userId,
   companyId,
 });
 

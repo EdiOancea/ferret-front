@@ -1,13 +1,5 @@
-import 'isomorphic-fetch';
-import { API_URL } from 'config';
+import apiRequest from './apiRequest';
 
-const getCompanyRequest = async () => {
-  const res = await fetch(`${API_URL}/companies`, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-  });
+const getCompaniesRequest = async () => apiRequest.get('/companies/');
 
-  return res.json();
-};
-
-export default getCompanyRequest;
+export default getCompaniesRequest;
