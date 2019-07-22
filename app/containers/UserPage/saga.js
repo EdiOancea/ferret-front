@@ -1,9 +1,6 @@
-import ls from 'local-storage';
 import { takeLatest, put } from 'redux-saga/effects';
 
-import parseJwt from 'services/parseJwt';
 import getUserRequest from 'services/getUserRequest';
-import { storeUserId } from 'containers/SignInForm/actions';
 import { getUserSuccess, getUserFailure } from 'containers/App/actions';
 import { GET_USER } from './constants';
 
