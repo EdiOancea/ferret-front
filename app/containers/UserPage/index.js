@@ -18,8 +18,15 @@ import saga from './saga';
 class UserPage extends React.Component {
   componentDidMount() {
     const { onLoad, loggedUserId } = this.props;
-
     onLoad(loggedUserId);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { onLoad, loggedUserId } = this.props;
+    const differentLoggedUserId = prevProps.loggedUserId !== loggedUserId;
+    if (differentLoggedUserId) {
+      onLoad(loggedUserId);
+    }
   }
 
   render() {

@@ -9,12 +9,7 @@ import { GET_USER } from './constants';
 
 export function* getUser(action) {
   const { id } = action;
-  if (!id) {
-    const { id: userId } = parseJwt(ls.get('token'));
-    yield put(storeUserId(userId));
-  }
-  const userId = id || parseJwt(ls.get('token')).id;
-  const response = yield getUserRequest(userId);
+  const response = yield getUserRequest(id);
   if (response.id !== undefined) {
     yield put(getUserSuccess(response));
   } else {

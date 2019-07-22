@@ -1,5 +1,7 @@
 import ls from 'local-storage';
 
+import parseJwt from 'services/parseJwt';
+import { storeUserId } from 'containers/SignInForm/actions';
 import {
   STORE_TOKEN,
   SHOW_LOADER,
@@ -14,6 +16,10 @@ export const getToken = () => {
 
   return dispatch => {
     dispatch(storeToken(lsToken));
+    if (lsToken !== null) {
+      const { id } = parseJwt(lsToken);
+      dispatch(storeUserId(id));
+    }
   };
 };
 
