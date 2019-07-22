@@ -18,7 +18,9 @@ import saga from './saga';
 class UserPage extends React.Component {
   componentDidMount() {
     const { onLoad, loggedUserId } = this.props;
-    onLoad(loggedUserId);
+    if (loggedUserId) {
+      onLoad(loggedUserId);
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -31,7 +33,6 @@ class UserPage extends React.Component {
 
   render() {
     const { loggedUserMeta } = this.props;
-
     return <UserContent {...loggedUserMeta} />;
   }
 }
