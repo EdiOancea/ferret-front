@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import ls from 'local-storage';
 
 import { API_URL } from 'config';
 
@@ -24,7 +25,10 @@ class Api {
   }
 
   async request(method, path, params = {}, headers = {}, body) {
-    const reqHeaders = {};
+    const token = ls.get('token');
+    const reqHeaders = {
+      Authorization: token ? `Bearer ${token}` : undefined,
+    };
     if (headers['Content-Type'] === 'multipart/form-data') {
       const { 'Content-Type': contentType, ...headersNoContentType } = headers;
       Object.assign(reqHeaders, headersNoContentType);
