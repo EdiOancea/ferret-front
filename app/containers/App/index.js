@@ -8,18 +8,16 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import GlobalStyle from 'global-styles';
 import AuthenticatedApp from 'components/AuthenticatedApp';
 import NotAuthenticatedApp from 'components/NotAuthenticatedApp';
 import Loading from 'components/Loading';
 import { selectToken, selectLoading } from './selectors';
-import { loadToken as loadTokenAction } from './actions';
+import { getToken as getTokenAction } from './actions';
 
 const renderItem = (isLoading, token) => {
   if (isLoading === true) {
@@ -36,7 +34,7 @@ const renderItem = (isLoading, token) => {
 /* eslint-disable react/prefer-stateless-function */
 class App extends React.Component {
   componentDidMount() {
-    this.props.loadToken();
+    this.props.getToken();
   }
 
   render() {
@@ -54,7 +52,7 @@ class App extends React.Component {
 App.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
-  loadToken: PropTypes.func.isRequired,
+  getToken: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -63,7 +61,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadToken: () => dispatch(loadTokenAction()),
+  getToken: () => dispatch(getTokenAction()),
 });
 
 const withConnect = connect(

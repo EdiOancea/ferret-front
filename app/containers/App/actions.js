@@ -1,5 +1,7 @@
+import ls from 'local-storage';
+
 import {
-  LOAD_TOKEN,
+  STORE_TOKEN,
   SHOW_LOADER,
   HIDE_LOADER,
   GET_USER_SUCCESS,
@@ -7,8 +9,17 @@ import {
   SIGN_OUT,
 } from './constants';
 
-export const loadToken = () => ({
-  type: LOAD_TOKEN,
+export const getToken = () => {
+  const lsToken = ls.get('token');
+
+  return dispatch => {
+    dispatch(storeToken(lsToken));
+  };
+};
+
+export const storeToken = token => ({
+  type: STORE_TOKEN,
+  token,
 });
 
 export const showLoader = () => ({
@@ -19,9 +30,13 @@ export const hideLoader = () => ({
   type: HIDE_LOADER,
 });
 
-export const signOut = () => ({
-  type: SIGN_OUT,
-});
+export const signOut = () => {
+  ls.remove('token');
+
+  return {
+    type: SIGN_OUT,
+  };
+};
 
 export const getUserSuccess = user => ({
   type: GET_USER_SUCCESS,
