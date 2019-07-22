@@ -1,17 +1,9 @@
-import fetch from 'isomorphic-fetch';
-import { API_URL } from 'config';
+import apiRequest from './apiRequest';
 
 const reviewExistsRequest = async data => {
-  const { userId, companyId } = data;
-  const res = await fetch(
-    `${API_URL}/company-reviews?userId=${userId}&companyId=${companyId}`,
-    {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    },
-  );
+  const { companyId } = data;
 
-  return res.json();
+  return apiRequest.get(`/companies/${companyId}/reviews/`);
 };
 
 export default reviewExistsRequest;

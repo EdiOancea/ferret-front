@@ -27,6 +27,7 @@ const appReducer = (state = initialState, action) => {
     case STORE_TOKEN:
       return state.set('token', action.token || '');
     case STORE_USER_ID:
+      console.log('hey cf');
       return state.setIn(['loggedUser', 'id'], action.id);
     case SIGN_IN_FAILURE:
       return state.set('token', '');

@@ -1,11 +1,6 @@
 import apiRequest from './apiRequest';
 
-const signInRequest = async data => (
-  await apiRequest(
-    'POST',
-    '/signin',
-    JSON.stringify(data)
-  )
-);
+const signInRequest = async data =>
+  apiRequest.post('/signin/', JSON.stringify(data));
 
 export default signInRequest;
