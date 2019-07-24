@@ -12,12 +12,12 @@ import {
 } from './constants';
 
 export const getToken = () => {
-  const lsToken = ls.get('token');
+  const token = ls.get('token');
 
   return dispatch => {
-    dispatch(storeToken(lsToken));
-    if (lsToken !== null) {
-      const { id } = parseJwt(lsToken);
+    dispatch(storeToken(token));
+    if (token !== null) {
+      const { id } = parseJwt(token);
       dispatch(storeUserId(id));
     }
   };

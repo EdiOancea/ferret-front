@@ -13,8 +13,8 @@ export const signInSuccess = token => {
   ls.set('token', token);
 
   return dispatch => {
-    dispatch(storeToken(token));
     const { id } = parseJwt(token);
+    dispatch(storeToken(token));
     dispatch(storeUserId(id));
   };
 };
