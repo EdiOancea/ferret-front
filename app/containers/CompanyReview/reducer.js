@@ -1,6 +1,7 @@
 import { fromJS } from 'immutable';
 
 import {
+  SET_RATING,
   ADD_REVIEW_SUCCESS,
   ADD_REVIEW_FAILURE,
   REVIEW_EXISTS_SUCCESS,
@@ -15,6 +16,8 @@ const initialState = fromJS({
 
 const addReviewReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_RATING:
+      return state.set('rating', action.rating);
     case ADD_REVIEW_SUCCESS:
       return state
         .set('errorMessage', '')

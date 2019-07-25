@@ -13,7 +13,11 @@ import {
   selectWasReviewed,
   selectRating,
 } from './selectors';
-import { addReview, reviewExists as reviewExistsAction } from './actions';
+import {
+  setRating as setRatingAction,
+  addReview,
+  reviewExists as reviewExistsAction,
+} from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -55,6 +59,7 @@ class CompanyReview extends React.Component {
 
   onRating(rating) {
     const { state } = this;
+    this.props.setRating(rating);
     this.setState({
       ...state,
       canComment: true,
@@ -94,6 +99,7 @@ class CompanyReview extends React.Component {
 }
 
 CompanyReview.propTypes = {
+  setRating: PropTypes.func.isRequired,
   reviewExists: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   companyId: PropTypes.number.isRequired,
@@ -109,6 +115,7 @@ export const mapStateToProps = createStructuredSelector({
 });
 
 export const mapDispatchToProps = dispatch => ({
+  setRating: rating => dispatch(setRatingAction(rating)),
   reviewExists: companyId => dispatch(reviewExistsAction(companyId)),
   onSubmit: values => dispatch(addReview(values)),
 });
