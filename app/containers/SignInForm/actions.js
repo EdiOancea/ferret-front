@@ -1,5 +1,6 @@
 import ls from 'local-storage';
 
+import { getUser } from 'containers/UserPage/actions';
 import parseJwt from 'services/parseJwt';
 import { storeToken } from 'containers/App/actions';
 import { SIGN_IN, STORE_USER_ID, SIGN_IN_FAILURE } from './constants';
@@ -16,6 +17,7 @@ export const signInSuccess = token => {
     const { id } = parseJwt(token);
     dispatch(storeToken(token));
     dispatch(storeUserId(id));
+    dispatch(getUser(id));
   };
 };
 

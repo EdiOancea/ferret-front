@@ -10,12 +10,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import GlobalStyle from 'global-styles';
+import injectSaga from 'utils/injectSaga';
 import AuthenticatedApp from 'components/AuthenticatedApp';
 import NotAuthenticatedApp from 'components/NotAuthenticatedApp';
 import Loading from 'components/Loading';
+import saga from 'containers/UserPage/saga';
 import { selectToken, selectLoading } from './selectors';
 import { getToken as getTokenAction } from './actions';
 
@@ -69,4 +72,12 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default withConnect(App);
+const withSaga = injectSaga({
+  key: 'loggedUser',
+  saga,
+});
+
+export default compose(
+  withConnect,
+  withSaga,
+)(App);

@@ -1,7 +1,7 @@
 import { takeLatest, put } from 'redux-saga/effects';
 
 import getUserRequest from 'services/getUserRequest';
-import { getUserSuccess, getUserFailure } from 'containers/App/actions';
+import { getUserSuccess, signOut } from 'containers/App/actions';
 import { GET_USER } from './constants';
 
 export function* getUser(action) {
@@ -10,7 +10,7 @@ export function* getUser(action) {
   if (response.id !== undefined) {
     yield put(getUserSuccess(response));
   } else {
-    yield put(getUserFailure());
+    yield put(signOut());
   }
 }
 

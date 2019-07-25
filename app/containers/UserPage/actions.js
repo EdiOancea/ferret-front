@@ -1,9 +1,4 @@
-import {
-  GET_USER_SUCCESS,
-  GET_USER_FAILURE,
-  GET_USER,
-  SIGN_OUT,
-} from './constants';
+import { GET_USER_SUCCESS, GET_USER, SIGN_OUT } from './constants';
 
 export const getUser = id => ({
   type: GET_USER,
@@ -17,8 +12,4 @@ export const getUserSuccess = user => ({
 
 export const signOut = () => ({
   type: SIGN_OUT,
-});
-
-export const getUserFailure = () => ({
-  type: GET_USER_FAILURE,
 });

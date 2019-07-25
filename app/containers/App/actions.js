@@ -1,5 +1,6 @@
 import ls from 'local-storage';
 
+import { getUser } from 'containers/UserPage/actions';
 import parseJwt from 'services/parseJwt';
 import { storeUserId } from 'containers/SignInForm/actions';
 import {
@@ -7,7 +8,6 @@ import {
   SHOW_LOADER,
   HIDE_LOADER,
   GET_USER_SUCCESS,
-  GET_USER_FAILURE,
   SIGN_OUT,
 } from './constants';
 
@@ -19,6 +19,7 @@ export const getToken = () => {
     if (token !== null) {
       const { id } = parseJwt(token);
       dispatch(storeUserId(id));
+      dispatch(getUser(id));
     }
   };
 };
@@ -47,8 +48,4 @@ export const signOut = () => {
 export const getUserSuccess = user => ({
   type: GET_USER_SUCCESS,
   user,
-});
-
-export const getUserFailure = () => ({
-  type: GET_USER_FAILURE,
 });
