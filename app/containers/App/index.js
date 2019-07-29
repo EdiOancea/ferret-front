@@ -18,7 +18,7 @@ import injectSaga from 'utils/injectSaga';
 import AuthenticatedApp from 'components/AuthenticatedApp';
 import NotAuthenticatedApp from 'components/NotAuthenticatedApp';
 import Loading from 'components/Loading';
-import saga from 'containers/UserPage/saga';
+import saga from './saga';
 import { selectToken, selectLoading } from './selectors';
 import { getToken as getTokenAction } from './actions';
 
