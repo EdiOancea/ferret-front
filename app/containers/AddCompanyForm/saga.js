@@ -1,11 +1,11 @@
 import { takeLatest, put } from 'redux-saga/effects';
-import addCompanyRequest from 'services/addCompanyRequest';
+import companyService from 'services/company';
 import { ADD_COMPANY } from './constants';
 import { addCompanySuccess, addCompanyFailure } from './actions';
 
 export function* addCompany(action) {
   const { data } = action;
-  const response = yield addCompanyRequest(data);
+  const response = yield companyService.create(data);
   if (response.id) {
     yield put(addCompanySuccess(response));
   } else {

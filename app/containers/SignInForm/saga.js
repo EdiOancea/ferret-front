@@ -1,13 +1,13 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import ls from 'local-storage';
 
-import signInRequest from 'services/signInRequest';
+import userService from 'services/user';
 import { SIGN_IN } from './constants';
 import { signInSuccess, signInFailure } from './actions';
 
 export function* signIn(action) {
   const { data } = action;
-  const response = yield signInRequest(data);
+  const response = yield userService.signIn(data);
   if (response.token) {
     yield put(signInSuccess(response.token));
   } else {

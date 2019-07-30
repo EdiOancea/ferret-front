@@ -1,6 +1,5 @@
 import { takeLatest, put, all } from 'redux-saga/effects';
-import addReviewRequest from 'services/addCompanyReviewRequest';
-import reviewExistsRequest from 'services/reviewExistsRequest';
+import companyService from 'services/company';
 import { ADD_REVIEW, REVIEW_EXISTS } from './constants';
 import {
   addReviewSuccess,
@@ -11,7 +10,7 @@ import {
 
 export function* addReview(action) {
   const { data } = action;
-  const response = yield addReviewRequest(data);
+  const response = yield companyService.addReview(data);
   if (response.id) {
     yield put(addReviewSuccess(response));
   } else {
@@ -22,7 +21,7 @@ export function* addReview(action) {
 export function* reviewExists(action) {
   const { companyId } = action;
   const data = { companyId };
-  const response = yield reviewExistsRequest(data);
+  const response = yield companyService.getAllReviews(data);
   if (response.length > 0) {
     yield put(reviewExistsSuccess(response));
   } else {

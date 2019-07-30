@@ -1,10 +1,10 @@
 import { takeLatest, put } from 'redux-saga/effects';
-import getCompaniesRequest from 'services/getCompaniesRequest';
+import companyService from 'services/company';
 import { GET_COMPANIES } from './constants';
 import { getCompaniesSuccess, getCompaniesFailure } from './actions';
 
 export function* getCompanies() {
-  const response = yield getCompaniesRequest();
+  const response = yield companyService.getAll();
   if (!response.message) {
     yield put(getCompaniesSuccess(response));
   } else {
