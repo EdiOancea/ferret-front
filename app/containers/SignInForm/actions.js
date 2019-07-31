@@ -1,9 +1,12 @@
 import ls from 'local-storage';
 
-import { getUser } from 'containers/UserPage/actions';
 import parseJwt from 'services/parseJwt';
-import { storeToken } from 'containers/App/actions';
-import { SIGN_IN, STORE_USER_ID, SIGN_IN_FAILURE } from './constants';
+import { storeToken, getLoggedUser } from 'containers/App/actions';
+import {
+  SIGN_IN,
+  EMPTY_SIGN_IN_ERROR_MESSAGE,
+  SIGN_IN_FAILURE,
+} from './constants';
 
 export const signIn = data => ({
   type: SIGN_IN,
@@ -15,15 +18,14 @@ export const signInSuccess = token => {
 
   return dispatch => {
     const { id } = parseJwt(token);
+    dispatch(emptySignInErrorMessage());
     dispatch(storeToken(token));
-    dispatch(storeUserId(id));
-    dispatch(getUser(id));
+    dispatch(getLoggedUser(id));
   };
 };
 
-export const storeUserId = id => ({
-  type: STORE_USER_ID,
-  id,
+export const emptySignInErrorMessage = () => ({
+  type: EMPTY_SIGN_IN_ERROR_MESSAGE,
 });
 
 export const signInFailure = errorMessage => ({

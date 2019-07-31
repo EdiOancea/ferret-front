@@ -8,7 +8,7 @@ import { getCompaniesSuccess, getCompaniesFailure } from './actions';
 export function* getCompanies() {
   let response;
   try {
-    response = yield call(companyService.getAll, undefined);
+    response = yield call(companyService.getAll);
   } catch (error) {
     yield put(handleApiErrors(error.status));
     return;

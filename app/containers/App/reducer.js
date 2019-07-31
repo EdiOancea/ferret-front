@@ -1,14 +1,12 @@
 import { fromJS } from 'immutable';
-import { omit } from 'lodash';
-import {
-  STORE_USER_ID,
-  SIGN_IN_FAILURE,
-} from 'containers/SignInForm/constants';
+
+import { SIGN_IN_FAILURE } from 'containers/SignInForm/constants';
 import {
   STORE_TOKEN,
   SHOW_LOADER,
   HIDE_LOADER,
-  GET_USER_SUCCESS,
+  GET_LOGGED_USER_SUCCESS,
+  GET_LOGGED_USER_FAILURE,
   SIGN_OUT,
 } from './constants';
 
@@ -25,19 +23,23 @@ const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case STORE_TOKEN:
       return state.set('token', action.token || '');
-    case STORE_USER_ID:
-      return state.setIn(['loggedUser', 'id'], action.id);
     case SIGN_IN_FAILURE:
       return state.set('token', '');
     case SHOW_LOADER:
       return state.set('isLoading', true);
     case HIDE_LOADER:
       return state.set('isLoading', false);
-    case GET_USER_SUCCESS: {
-      const userMeta = omit(action.user, 'id');
+    case GET_LOGGED_USER_SUCCESS: {
+      const { id, ...userMeta } = action.user;
 
-      return state.setIn(['loggedUser', 'meta'], userMeta);
+      return state
+        .setIn(['loggedUser', 'id'], id)
+        .setIn(['loggedUser', 'meta'], userMeta);
     }
+    case GET_LOGGED_USER_FAILURE:
+      return state
+        .setIn(['loggedUser', 'id'], null)
+        .setIn(['loggedUser', 'meta'], null);
     case SIGN_OUT:
       return state
         .set('token', '')

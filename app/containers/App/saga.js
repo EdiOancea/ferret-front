@@ -1,26 +1,29 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
 
 import userService from 'services/user';
-import { GET_USER } from 'containers/UserPage/constants';
-import { handleApiErrors, getUserSuccess, signOut } from './actions';
+import { GET_LOGGED_USER } from './constants';
+import {
+  handleApiErrors,
+  getLoggedUserSuccess,
+  getLoggedUserFailure,
+} from './actions';
 
-export function* getUser(action) {
-  const { id } = action;
+export function* getLoggedUser() {
   let response;
   try {
-    response = yield call(userService.get, id);
+    response = yield call(userService.getLoggedUser);
   } catch (error) {
     yield put(handleApiErrors(error.status));
     return;
   }
 
   if (response.id !== undefined) {
-    yield put(getUserSuccess(response));
+    yield put(getLoggedUserSuccess(response));
   } else {
-    yield put(signOut());
+    yield put(getLoggedUserFailure());
   }
 }
 
 export default function* requestGetUserSaga() {
-  yield takeLatest(GET_USER, getUser);
+  yield takeLatest(GET_LOGGED_USER, getLoggedUser);
 }

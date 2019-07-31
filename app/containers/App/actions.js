@@ -1,14 +1,13 @@
 import ls from 'local-storage';
 
-import { getUser } from 'containers/UserPage/actions';
 import parseJwt from 'services/parseJwt';
-import { storeUserId } from 'containers/SignInForm/actions';
 import {
-  HANDLE_API_ERRORS,
   STORE_TOKEN,
   SHOW_LOADER,
   HIDE_LOADER,
-  GET_USER_SUCCESS,
+  GET_LOGGED_USER,
+  GET_LOGGED_USER_SUCCESS,
+  GET_LOGGED_USER_FAILURE,
   SIGN_OUT,
 } from './constants';
 
@@ -25,8 +24,7 @@ export const getToken = () => {
     dispatch(storeToken(token));
     if (token !== null) {
       const { id } = parseJwt(token);
-      dispatch(storeUserId(id));
-      dispatch(getUser(id));
+      dispatch(getLoggedUser(id));
     }
   };
 };
@@ -52,7 +50,16 @@ export const signOut = () => {
   };
 };
 
-export const getUserSuccess = user => ({
-  type: GET_USER_SUCCESS,
+export const getLoggedUser = id => ({
+  type: GET_LOGGED_USER,
+  id,
+});
+
+export const getLoggedUserSuccess = user => ({
+  type: GET_LOGGED_USER_SUCCESS,
   user,
+});
+
+export const getLoggedUserFailure = () => ({
+  type: GET_LOGGED_USER_FAILURE,
 });

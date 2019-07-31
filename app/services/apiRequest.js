@@ -24,6 +24,7 @@ class Api {
     return this.request('DELETE', path, params, headers);
   }
 
+  /* eslint-disable no-unused-vars */
   async request(method, path, params = {}, headers = {}, body) {
     const token = ls.get('token');
     const reqHeaders = {
@@ -48,7 +49,7 @@ class Api {
     const resJson = await res.json();
 
     if (badStatusesToBeHandled.includes(res.status)) {
-      const error = new Error(resJson.errorMessage);
+      const error = new Error(resJson.message);
       error.status = res.status;
       throw error;
     }
