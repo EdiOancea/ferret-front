@@ -1,3 +1,4 @@
+export const HANDLE_API_ERRORS = 'HANDLE_API_ERRORS';
 export const STORE_TOKEN = 'STORE_TOKEN';
 export const SHOW_LOADER = 'SHOW_LOADER';
 export const HIDE_LOADER = 'HIDE_LOADER';

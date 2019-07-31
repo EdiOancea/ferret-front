@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 
 import UserPage from 'containers/UserPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import CompanyPage from 'components/CompanyPage';
 
 const AuthenticatedApp = () => (
   <Switch>

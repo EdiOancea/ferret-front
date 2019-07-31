@@ -4,12 +4,19 @@ import { getUser } from 'containers/UserPage/actions';
 import parseJwt from 'services/parseJwt';
 import { storeUserId } from 'containers/SignInForm/actions';
 import {
+  HANDLE_API_ERRORS,
   STORE_TOKEN,
   SHOW_LOADER,
   HIDE_LOADER,
   GET_USER_SUCCESS,
   SIGN_OUT,
 } from './constants';
+
+export const handleApiErrors = status => dispatch => {
+  if (status === 401) {
+    dispatch(signOut());
+  }
+};
 
 export const getToken = () => {
   const token = ls.get('token');
