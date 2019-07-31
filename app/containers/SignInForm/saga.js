@@ -18,7 +18,7 @@ export function* signIn(action) {
   if (response.token !== undefined) {
     yield put(signInSuccess(response.token));
   } else {
-    yield put(signInFailure(response.errorMessage));
+    yield put(signInFailure(response.message));
   }
 }
 
