@@ -17,10 +17,9 @@ export const signInSuccess = token => {
   ls.set('token', token);
 
   return dispatch => {
-    const { id } = parseJwt(token);
     dispatch(emptySignInErrorMessage());
     dispatch(storeToken(token));
-    dispatch(getLoggedUser(id));
+    dispatch(getLoggedUser());
   };
 };
 

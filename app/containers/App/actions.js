@@ -23,8 +23,7 @@ export const getToken = () => {
   return dispatch => {
     dispatch(storeToken(token));
     if (token !== null) {
-      const { id } = parseJwt(token);
-      dispatch(getLoggedUser(id));
+      dispatch(getLoggedUser());
     }
   };
 };
@@ -50,9 +49,8 @@ export const signOut = () => {
   };
 };
 
-export const getLoggedUser = id => ({
+export const getLoggedUser = () => ({
   type: GET_LOGGED_USER,
-  id,
 });
 
 export const getLoggedUserSuccess = user => ({
