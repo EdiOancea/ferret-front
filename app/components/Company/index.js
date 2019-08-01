@@ -42,7 +42,7 @@ const Company = props => {
     if (company === null) {
       return null;
     }
-    const { id, name, address, business, timetable } = company;
+    const { id, name, address, business } = company;
 
     return (
       <div className={classes.root}>
@@ -55,8 +55,6 @@ const Company = props => {
         }`}</Line>
         <Divider />
         <Line label="Business">{business}</Line>
-        <Divider />
-        <Line label="Timetable">{timetable}</Line>
         <Divider />
         <CompanyReview companyId={id} />
         {renderSlideShow()}
