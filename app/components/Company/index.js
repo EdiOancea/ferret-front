@@ -38,21 +38,31 @@ const Company = props => {
     );
   };
 
-  const renderCompany = () =>
-    company ? (
+  const renderCompany = () => {
+    if (company === null) {
+      return null;
+    }
+    const { id, name, address, business, timetable } = company;
+
+    return (
       <div className={classes.root}>
-        <Line label="Name">{company.name}</Line>
+        <Line label="Name">{name}</Line>
         <Divider />
-        <Line label="Address">{company.address}</Line>
+        <Line label="Address">{`${address.streetName} ${
+          address.streetNumber
+        }, ap. ${address.apartmentNumber}, ${address.city}, ${
+          address.country
+        }`}</Line>
         <Divider />
-        <Line label="Business">{company.business}</Line>
+        <Line label="Business">{business}</Line>
         <Divider />
-        <Line label="Timetable">{company.timetable}</Line>
+        <Line label="Timetable">{timetable}</Line>
         <Divider />
-        <CompanyReview companyId={company.id} />
+        <CompanyReview companyId={id} />
         {renderSlideShow()}
       </div>
-    ) : null;
+    );
+  };
 
   return renderCompany();
 };
