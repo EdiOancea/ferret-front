@@ -1,6 +1,7 @@
-import { takeLatest, put, all } from 'redux-saga/effects';
-import addReviewRequest from 'services/addCompanyReviewRequest';
-import reviewExistsRequest from 'services/reviewExistsRequest';
+import { takeLatest, put, call, all } from 'redux-saga/effects';
+
+import companyService from 'services/company';
+import { handleApiErrors } from 'containers/App/actions';
 import { ADD_REVIEW, REVIEW_EXISTS } from './constants';
 import {
   addReviewSuccess,
@@ -11,7 +12,14 @@ import {
 
 export function* addReview(action) {
   const { data } = action;
-  const response = yield addReviewRequest(data);
+  let response;
+  try {
+    response = yield call(companyService.addReview, data);
+  } catch (error) {
+    yield put(handleApiErrors(error.status));
+    return;
+  }
+
   if (response.id) {
     yield put(addReviewSuccess(response));
   } else {
@@ -22,7 +30,14 @@ export function* addReview(action) {
 export function* reviewExists(action) {
   const { companyId } = action;
   const data = { companyId };
-  const response = yield reviewExistsRequest(data);
+  let response;
+  try {
+    response = yield call(companyService.getAllReviews, data);
+  } catch (error) {
+    yield put(handleApiErrors(error.status));
+    return;
+  }
+
   if (response.length > 0) {
     yield put(reviewExistsSuccess(response[0]));
   } else {

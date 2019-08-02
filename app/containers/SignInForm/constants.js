@@ -1,3 +1,3 @@
 export const SIGN_IN = 'SIGN_IN';
-export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
+export const EMPTY_SIGN_IN_ERROR_MESSAGE = 'EMPTY_SIGN_IN_ERROR_MESSAGE';
 export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE';

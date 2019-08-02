@@ -1,9 +1,8 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import UserPage from 'containers/UserPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import SignInPage from 'components/SignInPage';
 
 const AuthenticatedApp = () => (
   <Switch>

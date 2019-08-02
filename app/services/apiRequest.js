@@ -24,11 +24,14 @@ class Api {
     return this.request('DELETE', path, params, headers);
   }
 
+  /* eslint-disable no-unused-vars */
   async request(method, path, params = {}, headers = {}, body) {
     const token = ls.get('token');
     const reqHeaders = {
       Authorization: token ? `Bearer ${token}` : undefined,
     };
+    const badStatusesToBeHandled = [401];
+
     if (headers['Content-Type'] === 'multipart/form-data') {
       const { 'Content-Type': contentType, ...headersNoContentType } = headers;
       Object.assign(reqHeaders, headersNoContentType);
@@ -43,7 +46,15 @@ class Api {
       body,
     });
 
-    return res.json();
+    const resJson = await res.json();
+
+    if (badStatusesToBeHandled.includes(res.status)) {
+      const error = new Error(resJson.message);
+      error.status = res.status;
+      throw error;
+    }
+
+    return resJson;
   }
 }
 
