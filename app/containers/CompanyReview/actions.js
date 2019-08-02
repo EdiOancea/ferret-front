@@ -1,4 +1,5 @@
 import {
+  SET_RATING,
   ADD_REVIEW,
   ADD_REVIEW_SUCCESS,
   ADD_REVIEW_FAILURE,
@@ -6,6 +7,11 @@ import {
   REVIEW_EXISTS_SUCCESS,
   REVIEW_EXISTS_FAILURE,
 } from './constants';
+
+export const setRating = rating => ({
+  type: SET_RATING,
+  rating,
+});
 
 export const addReview = data => ({
   type: ADD_REVIEW,

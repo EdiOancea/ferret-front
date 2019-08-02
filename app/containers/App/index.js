@@ -8,17 +8,19 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import GlobalStyle from 'global-styles';
+import injectSaga from 'utils/injectSaga';
 import AuthenticatedApp from 'components/AuthenticatedApp';
 import NotAuthenticatedApp from 'components/NotAuthenticatedApp';
 import Loading from 'components/Loading';
+import saga from './saga';
 import { selectToken, selectLoading } from './selectors';
+import { getToken as getTokenAction } from './actions';
 
 const renderItem = (isLoading, token) => {
   if (isLoading === true) {
@@ -34,6 +36,10 @@ const renderItem = (isLoading, token) => {
 
 /* eslint-disable react/prefer-stateless-function */
 class App extends React.Component {
+  componentDidMount() {
+    this.props.getToken();
+  }
+
   render() {
     const { isLoading, token } = this.props;
 
@@ -49,6 +55,7 @@ class App extends React.Component {
 App.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
+  getToken: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -56,9 +63,21 @@ const mapStateToProps = createStructuredSelector({
   token: selectToken,
 });
 
+const mapDispatchToProps = dispatch => ({
+  getToken: () => dispatch(getTokenAction()),
+});
+
 const withConnect = connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 );
 
-export default withConnect(App);
+const withSaga = injectSaga({
+  key: 'loggedUser',
+  saga,
+});
+
+export default compose(
+  withConnect,
+  withSaga,
+)(App);
