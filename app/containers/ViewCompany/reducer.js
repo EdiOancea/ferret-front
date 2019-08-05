@@ -10,7 +10,9 @@ const initialState = fromJS({
 const getCompanyReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_COMPANY_SUCCESS:
-      return state.set('errorMessage', '').set('company', action.company);
+      return state
+        .set('errorMessage', '')
+        .set('company', fromJS(action.company));
     case GET_COMPANY_FAILURE:
       return state
         .set('errorMessage', action.errorMessage)

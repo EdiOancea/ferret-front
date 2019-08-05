@@ -2,27 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SlideShow from 'react-image-show';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Rating from 'material-ui-rating';
 import Divider from '@material-ui/core/Divider';
 import Line from 'components/Line/Loadable';
 import CompanyReview from 'containers/CompanyReview';
+import Button from '@material-ui/core/Button';
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     marginTop: '30px',
     fontSize: '20px',
   },
+  button: {
+    marginTop: '30px',
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
 });
 
 const Company = props => {
-  const { classes, company } = props;
+  const { classes, company, onCreateAppointment } = props;
 
   const renderSlideShow = () => {
     const imageURLs = company.images.map(image => image.url);
 
     return (
       <SlideShow
-        className={classes.slideShow}
         images={imageURLs}
         width="100%"
         imagesWidth="300px"
@@ -47,10 +52,17 @@ const Company = props => {
         <Divider />
         <Line label="Business">{company.business}</Line>
         <Divider />
-        <Line label="Timetable">{company.timetable}</Line>
-        <Divider />
         <CompanyReview companyId={company.id} />
         {renderSlideShow()}
+        <Divider />
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={onCreateAppointment}
+        >
+          Create Appointment
+        </Button>
       </div>
     ) : null;
 
@@ -60,6 +72,7 @@ const Company = props => {
 Company.propTypes = {
   classes: PropTypes.object.isRequired,
   company: PropTypes.object,
+  onCreateAppointment: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Company);

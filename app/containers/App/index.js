@@ -11,6 +11,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import GlobalStyle from 'global-styles';
@@ -78,6 +79,7 @@ const withSaga = injectSaga({
 });
 
 export default compose(
+  withRouter,
   withConnect,
   withSaga,
 )(App);

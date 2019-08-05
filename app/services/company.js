@@ -35,6 +35,15 @@ class CompanyService {
 
     return apiRequest.get(`/companies/${companyId}/reviews/`);
   }
+
+  async createAppointment(data) {
+    const { companyId, ...bodyData } = data;
+
+    return apiRequest.post(
+      `/companies/${companyId}/appointments`,
+      JSON.stringify(bodyData),
+    );
+  }
 }
 
 export default new CompanyService();
