@@ -14,15 +14,12 @@ const styles = theme => ({
   },
 });
 
-const Company = props => {
-  const { classes, company } = props;
-
-  const renderSlideShow = () => {
-    const imageURLs = company.images.map(image => image.url);
+class Company extends React.Component {
+  renderSlideShow(images) {
+    const imageURLs = images.map(image => image.url);
 
     return (
       <SlideShow
-        className={classes.slideShow}
         images={imageURLs}
         width="100%"
         imagesWidth="300px"
@@ -36,26 +33,33 @@ const Company = props => {
         fixedImagesHeight
       />
     );
-  };
+  }
 
-  const renderCompany = () =>
-    company ? (
+  render() {
+    const { classes, company } = this.props;
+    if (company === null) {
+      return null;
+    }
+    const { id, name, address, business, images } = company;
+
+    return (
       <div className={classes.root}>
-        <Line label="Name">{company.name}</Line>
+        <Line label="Name">{name}</Line>
         <Divider />
-        <Line label="Address">{company.address}</Line>
+        <Line label="Address">{`${address.streetName} ${
+          address.streetNumber
+        }, ap. ${address.apartmentNumber}, ${address.city}, ${
+          address.country
+        }`}</Line>
         <Divider />
-        <Line label="Business">{company.business}</Line>
+        <Line label="Business">{business}</Line>
         <Divider />
-        <Line label="Timetable">{company.timetable}</Line>
-        <Divider />
-        <CompanyReview companyId={company.id} />
-        {renderSlideShow()}
+        <CompanyReview companyId={id} />
+        {this.renderSlideShow(images)}
       </div>
-    ) : null;
-
-  return renderCompany();
-};
+    );
+  }
+}
 
 Company.propTypes = {
   classes: PropTypes.object.isRequired,
