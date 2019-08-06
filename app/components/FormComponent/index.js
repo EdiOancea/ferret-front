@@ -7,10 +7,10 @@ import Input from 'components/Input';
 import FormCheckbox from 'components/FormCheckbox';
 import FormButton from 'components/FormButton';
 
-const styles = theme => ({
+const styles = () => ({
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing.unit,
+    marginTop: '30px',
   },
 });
 

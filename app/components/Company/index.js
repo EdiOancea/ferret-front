@@ -2,15 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SlideShow from 'react-image-show';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Rating from 'material-ui-rating';
 import Divider from '@material-ui/core/Divider';
 import Line from 'components/Line/Loadable';
 import CompanyReview from 'containers/CompanyReview';
+import Button from '@material-ui/core/Button';
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     marginTop: '30px',
     fontSize: '20px',
+  },
+  button: {
+    marginTop: '30px',
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 });
 
@@ -36,7 +42,7 @@ class Company extends React.Component {
   }
 
   render() {
-    const { classes, company } = this.props;
+    const { classes, company, onCreateAppointment } = this.props;
     if (company === null) {
       return null;
     }
@@ -55,7 +61,17 @@ class Company extends React.Component {
         <Line label="Business">{business}</Line>
         <Divider />
         <CompanyReview companyId={id} />
+        <Divider />
         {this.renderSlideShow(images)}
+        <Divider />
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={onCreateAppointment}
+        >
+          Create Appointment
+        </Button>
       </div>
     );
   }
@@ -64,6 +80,7 @@ class Company extends React.Component {
 Company.propTypes = {
   classes: PropTypes.object.isRequired,
   company: PropTypes.object,
+  onCreateAppointment: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Company);
